@@ -49,7 +49,7 @@ public class PatientController {
     @GetMapping(value = "/getall")
     public ResponseEntity<List<Patient>> getAll()   {
 
-        List<Patient> patients = null;
+        List<Patient> patients;
 
         patients = patientService.findAll();
 

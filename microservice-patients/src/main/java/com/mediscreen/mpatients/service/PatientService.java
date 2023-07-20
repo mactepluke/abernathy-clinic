@@ -74,6 +74,7 @@ public class PatientService {
         return patient;
     }
 
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public Patient delete(String family, String given) {
 
         Patient patient = find(family, given);

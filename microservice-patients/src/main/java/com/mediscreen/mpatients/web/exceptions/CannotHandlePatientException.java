@@ -3,10 +3,10 @@ package com.mediscreen.mpatients.web.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class CannotAddPatientException extends RuntimeException {
+@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+public class CannotHandlePatientException extends RuntimeException {
 
-    public CannotAddPatientException(String message) {
+    public CannotHandlePatientException(String message) {
         super(message);
     }
 }

@@ -18,7 +18,7 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int patientId;
+    private Integer patientId;
     @Column(length = 50)
     @Size(max = 50)
     @NotBlank(message = "Family name is mandatory")
@@ -40,12 +40,11 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int patientId, String family, String given, LocalDate dob, boolean sex, String address, String phone) {
-        this.patientId = patientId;
+    public Patient(String family, String given, LocalDate dob, char sex, String address, String phone) {
         this.family = family;
         this.given = given;
         this.dob = dob;
-        this.sex = sex;
+        setSex(sex);
         this.address = address;
         this.phone = phone;
     }
@@ -82,12 +81,12 @@ public class Patient {
         this.dob = dob;
     }
 
-    public boolean isSex() {
-        return sex;
+    public char getSex() {
+        return sex ? 'M' : 'F';
     }
 
-    public void setSex(boolean sex) {
-        this.sex = sex;
+    public void setSex(char sex) {
+        this.sex = sex != 'F';
     }
 
     public String getAddress() {

@@ -1,7 +1,29 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { importProvidersFrom } from '@angular/core';
+import { AppComponent } from './app/app.component';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {provideRouter, Routes} from "@angular/router";
 
-import { AppModule } from './app/app.module';
+export const routes: Routes = [
+  {
+    path:'', redirectTo: 'mediscreen-abernathy', pathMatch: 'full'
+  },
+  {
+    path:'mediscreen-abernathy',
+    loadComponent: () => import('./app/pages/home-page/home-page.component').then(module => module.HomePageComponent)
+  },
+  {
+    path:'mediscreen-abernathy/patients',
+    loadComponent: () => import('./app/pages/patients-page/patients-page.component').then(module => module.PatientsPageComponent)
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./app/pages/page-not-found/page-not-found.component').then(module => module.PageNotFoundComponent)
+  }
+]
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
+bootstrapApplication(AppComponent, {
+    providers: [importProvidersFrom(BrowserModule, BrowserAnimationsModule),
+    provideRouter(routes)]
+})
   .catch(err => console.error(err));

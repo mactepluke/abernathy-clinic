@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6001cead-0754-4d04-8b12-7ba38a264fb0" name="Changes" comment="" />
+    <list default="true" id="6001cead-0754-4d04-8b12-7ba38a264fb0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d9045450-ffdf-401d-b4dc-125af70bfac7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d9045450-ffdf-401d-b4dc-125af70bfac7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/app.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/microservice-patients/src/main/java/com/mediscreen/mpatients/web/controller/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/microservice-patients/src/main/java/com/mediscreen/mpatients/web/controller/PatientController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +30,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="318f0e3b-2c5f-4700-a04e-84086472c9fe" />
+        <option name="url" value="https://github.com/mactepluke/abernathy-clinic.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -53,15 +76,19 @@
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "openjdk-20",
+    "last_opened_file_path": "/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-assessment/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Errors",
+    "spring.configuration.checksum": "c92fa67d6b576972c7ee4c4c5077eb0f",
+    "ts.external.directory.path": "/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/ui/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -75,11 +102,38 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Spring Boot.mpatients">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/microservice-assessment/src/main/resources" />
+      <recent name="$PROJECT_DIR$/microservice-history/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server (ui)">
     <configuration name="Angular Application (ui)" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
-    <configuration name="mpatients" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="MicroserviceAssessmentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="massessment" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mediscreen.massessment.MicroserviceAssessmentApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MicroserviceHistoryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="mhistory" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.mediscreen.mhistory.MicroserviceHistoryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MicroservicePatientsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="mpatients" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.mediscreen.mpatients.MicroservicePatientsApplication" />
       <method v="2">
@@ -99,7 +153,9 @@
     <list>
       <item itemvalue="JavaScript Debug.Angular Application (ui)" />
       <item itemvalue="npm.Angular CLI Server (ui)" />
-      <item itemvalue="Spring Boot.mpatients" />
+      <item itemvalue="Spring Boot.MicroserviceAssessmentApplication" />
+      <item itemvalue="Spring Boot.MicroserviceHistoryApplication" />
+      <item itemvalue="Spring Boot.MicroservicePatientsApplication" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -111,6 +167,10 @@
       <option name="presentableId" value="Default" />
       <updated>1689872483130</updated>
       <workItem from="1689872484262" duration="1749000" />
+      <workItem from="1689892068700" duration="651000" />
+      <workItem from="1690307721998" duration="3404000" />
+      <workItem from="1690559491300" duration="708000" />
+      <workItem from="1690562254837" duration="15639000" />
     </task>
     <task id="LOCAL-00001" summary="Project initialization">
       <option name="closed" value="true" />
@@ -120,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1689878164526</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Minor build fixes">
+      <option name="closed" value="true" />
+      <created>1689892706109</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1689892706109</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +208,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Project initialization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Project initialization" />
+    <MESSAGE value="Minor build fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor build fixes" />
   </component>
 </project>

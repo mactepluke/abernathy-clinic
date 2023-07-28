@@ -1,51 +1,30 @@
-2023-07-20 19:19:04 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 19603 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 19:19:04 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 19:19:04 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 19:19:06 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 19:19:10 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 19:19:10 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 5.993 seconds (process running for 8.111)
-2023-07-20 21:16:24 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 22236 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 21:16:24 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 21:16:24 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 21:16:27 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 21:16:32 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 21:16:32 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 8.95 seconds (process running for 11.645)
-2023-07-20 21:31:41 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 24180 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 21:31:41 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 21:31:41 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 21:31:43 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 21:31:46 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 21:31:46 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 5.186 seconds (process running for 7.676)
-2023-07-20 21:33:32 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 24219 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 21:33:32 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 21:33:32 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 21:33:34 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 21:33:36 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 21:33:36 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 3.986 seconds (process running for 5.359)
-2023-07-20 21:33:44 WARN [PatientService:22] - Patient already exists with family=TestNone and given=Test
-2023-07-20 21:38:44 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 24258 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 21:38:44 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 21:38:44 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 21:38:45 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 21:38:49 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 21:38:49 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 5.685 seconds (process running for 6.685)
-2023-07-20 21:57:55 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 24464 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 21:57:55 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 21:57:55 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 21:57:57 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 21:58:00 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 21:58:00 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 5.692 seconds (process running for 8.63)
-2023-07-20 22:01:16 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 24555 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 22:01:16 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 22:01:16 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 22:01:17 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 22:01:20 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 22:01:20 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 5.034 seconds (process running for 6.231)
-2023-07-20 22:01:32 WARN [PatientService:66] - Patient doest not exist with family: 'TestNone' and given: 'Test'
-2023-07-20 22:11:01 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 24675 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
-2023-07-20 22:11:01 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
-2023-07-20 22:11:01 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
-2023-07-20 22:11:03 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
-2023-07-20 22:11:07 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
-2023-07-20 22:11:07 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 7.83 seconds (process running for 10.334)
-2023-07-20 22:11:19 WARN [PatientService:82] - Patient doest not exist with family: 'TestNone' and given: 'Test'
+2023-07-21 00:30:22 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 28301 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
+2023-07-21 00:30:22 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-21 00:30:22 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
+2023-07-21 00:30:24 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8081 (http)
+2023-07-21 00:30:26 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8081 (http) with context path ''
+2023-07-21 00:30:26 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 4.746 seconds (process running for 6.372)
+2023-07-21 00:34:34 INFO [MicroserviceAssessmentApplication:51] - Starting MicroserviceAssessmentApplication using Java 20.0.1 with PID 28392 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-assessment/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
+2023-07-21 00:34:34 DEBUG [MicroserviceAssessmentApplication:52] - Running with Spring Boot v3.1.2, Spring v6.0.11
+2023-07-21 00:34:34 INFO [MicroserviceAssessmentApplication:634] - No active profile set, falling back to 1 default profile: "default"
+2023-07-21 00:34:36 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8083 (http)
+2023-07-21 00:34:37 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8083 (http) with context path ''
+2023-07-21 00:34:37 INFO [MicroserviceAssessmentApplication:57] - Started MicroserviceAssessmentApplication in 3.065 seconds (process running for 4.145)
+2023-07-21 00:34:47 INFO [MicroserviceHistoryApplication:51] - Starting MicroserviceHistoryApplication using Java 20.0.1 with PID 28397 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-history/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
+2023-07-21 00:34:47 DEBUG [MicroserviceHistoryApplication:52] - Running with Spring Boot v3.1.2, Spring v6.0.11
+2023-07-21 00:34:47 INFO [MicroserviceHistoryApplication:634] - No active profile set, falling back to 1 default profile: "default"
+2023-07-21 00:34:48 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8082 (http)
+2023-07-21 00:34:49 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8082 (http) with context path ''
+2023-07-21 00:34:49 INFO [MicroserviceHistoryApplication:57] - Started MicroserviceHistoryApplication in 2.277 seconds (process running for 3.094)
+2023-07-21 00:35:49 INFO [MicroservicePatientsApplication:51] - Starting MicroservicePatientsApplication using Java 20.0.1 with PID 28408 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-patients/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
+2023-07-21 00:35:49 DEBUG [MicroservicePatientsApplication:52] - Running with Spring Boot v3.1.1, Spring v6.0.10
+2023-07-21 00:35:49 INFO [MicroservicePatientsApplication:634] - No active profile set, falling back to 1 default profile: "default"
+2023-07-21 00:35:51 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8081 (http)
+2023-07-21 00:35:54 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8081 (http) with context path ''
+2023-07-21 00:35:54 INFO [MicroservicePatientsApplication:57] - Started MicroservicePatientsApplication in 5.07 seconds (process running for 7.027)
+2023-07-21 00:37:04 INFO [MicroserviceHistoryApplication:51] - Starting MicroserviceHistoryApplication using Java 20.0.1 with PID 28424 (/Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic/microservice-history/target/classes started by lucmetz in /Users/lucmetz/Documents/IdeaProjects/PROJETS OPENCLASSROOMS/9_mediscreen/abernathy-clinic)
+2023-07-21 00:37:04 DEBUG [MicroserviceHistoryApplication:52] - Running with Spring Boot v3.1.2, Spring v6.0.11
+2023-07-21 00:37:04 INFO [MicroserviceHistoryApplication:634] - No active profile set, falling back to 1 default profile: "default"
+2023-07-21 00:37:06 INFO [TomcatWebServer:108] - Tomcat initialized with port(s): 8082 (http)
+2023-07-21 00:37:07 INFO [TomcatWebServer:220] - Tomcat started on port(s): 8082 (http) with context path ''
+2023-07-21 00:37:07 INFO [MicroserviceHistoryApplication:57] - Started MicroserviceHistoryApplication in 2.724 seconds (process running for 3.87)

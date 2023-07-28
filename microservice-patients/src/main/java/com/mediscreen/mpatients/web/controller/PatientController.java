@@ -70,7 +70,6 @@ public class PatientController {
             @RequestParam(required = false) String newPhone
     )   {
         Patient patient;
-
         patient = patientService.update(family, given, newFamily, newGiven, newDob, newSex, newAddress, newPhone);
 
         if (patient == null) throw new CannotHandlePatientException("Cannot update patient.");

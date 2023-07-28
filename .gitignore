@@ -13,7 +13,9 @@ yarn-error.log
 
 # IDEs and editors
 .idea/
+.idea/sonarlint
 .project
+microservice-patients/.idea
 .classpath
 .c9/
 *.launch
@@ -21,7 +23,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+ui/.vscode/tasks.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

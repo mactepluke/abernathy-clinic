@@ -2,10 +2,10 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import {Observable, of as observableOf, merge, BehaviorSubject} from 'rxjs';
+import { PatientService } from "../../services/PatientService";
 
-// TODO: Replace this with your own data model type
-export interface PatientsTableItem {
+export interface Patient {
   family: string;
   given: string;
   dob: Date;
@@ -15,7 +15,7 @@ export interface PatientsTableItem {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: PatientsTableItem[] = [
+const EXAMPLE_DATA: Patient[] = [
   {family: 'METZ', given: 'Luc', dob: new Date(1478708162000), sex: 'M', address: 'Soisy', phone: '06-17-XX-XX-XX'},
   {family: 'METZ', given: 'Viktor', dob: new Date(1478908162000), sex: 'M', address: 'Soisy', phone: '06-10-XX-XX-XX'}
 ];
@@ -25,13 +25,23 @@ const EXAMPLE_DATA: PatientsTableItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class PatientsTableDataSource extends DataSource<PatientsTableItem> {
-  data: PatientsTableItem[] = EXAMPLE_DATA;
+export class PatientsTableDataSource extends DataSource<Patient> {
+  data: Patient[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+  isLoading$ = new BehaviorSubject<boolean>(false);
+  patients$ = new BehaviorSubject<Patient[]>([]);
 
-  constructor() {
+  constructor(private patientService: PatientService) {
     super();
+  }
+
+  loadPatients(): void {
+    this.isLoading$.next(true);
+    this.patientService.findPatients().subscribe((patients) => {
+      this.patients$.next(patients);
+      this.isLoading$.next(false);
+    });
   }
 
   /**
@@ -39,7 +49,8 @@ export class PatientsTableDataSource extends DataSource<PatientsTableItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<PatientsTableItem[]> {
+  connect(): Observable<Patient[]> {
+    //return this.patients$.asObservable();
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -56,13 +67,15 @@ export class PatientsTableDataSource extends DataSource<PatientsTableItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void {
+    this.patients$.complete();
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: PatientsTableItem[]): PatientsTableItem[] {
+  private getPagedData(data: Patient[]): Patient[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -75,7 +88,7 @@ export class PatientsTableDataSource extends DataSource<PatientsTableItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: PatientsTableItem[]): PatientsTableItem[] {
+  private getSortedData(data: Patient[]): Patient[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }

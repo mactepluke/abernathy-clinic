@@ -3,7 +3,7 @@ import { AppComponent } from './app/app.component';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {provideRouter, Routes} from "@angular/router";
-import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 export const routes: Routes = [
   {

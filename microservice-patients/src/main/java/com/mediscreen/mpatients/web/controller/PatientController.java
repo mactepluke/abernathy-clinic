@@ -48,7 +48,7 @@ public class PatientController {
 
         patient = patientService.add(family, given, dob, sex, address, phone);
 
-        if (patient == null) throw new CannotHandlePatientException("Cannot add patient.");
+        if (patient == null) throw new CannotHandlePatientException("Cannot add patient");
 
         return new ResponseEntity<>(patient, HttpStatus.CREATED);
     }
@@ -58,10 +58,10 @@ public class PatientController {
 
         List<Patient> patients;
 
-        log.info("Get All request received.");
+        log.info("Get All request received");
         patients = patientService.findAll();
 
-        if (patients == null) throw new PatientNotFoundException("Patient list was not found.");
+        if (patients == null) throw new PatientNotFoundException("Patient list was not found");
 
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
@@ -84,7 +84,7 @@ public class PatientController {
 
         patient = patientService.update(family, given, newFamily, newGiven, newDob, newSex, newAddress, newPhone);
 
-        if (patient == null) throw new CannotHandlePatientException("Cannot update patient.");
+        if (patient == null) throw new CannotHandlePatientException("Cannot update patient");
 
         return new ResponseEntity<>(patient, HttpStatus.OK);
     }
@@ -96,7 +96,7 @@ public class PatientController {
 
         Patient patient = patientService.delete(family, given);
 
-        if (patient == null) throw new PatientNotFoundException("Could not delete patient.");
+        if (patient == null) throw new PatientNotFoundException("Could not delete patient");
 
         return new ResponseEntity<>(patient, HttpStatus.OK);
     }

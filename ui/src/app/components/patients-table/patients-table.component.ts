@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
+import {MatSort, MatSortModule, Sort} from '@angular/material/sort';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import { PatientsTableDataSource} from './patients-table-datasource';
 import {DatePipe} from "@angular/common";

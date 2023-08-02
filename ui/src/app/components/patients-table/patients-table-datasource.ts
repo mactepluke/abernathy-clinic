@@ -2,23 +2,9 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import {Observable, of as observableOf, merge, BehaviorSubject} from 'rxjs';
-import { PatientService } from "../../services/PatientService";
+import {Observable, of as observableOf, merge} from 'rxjs';
+import {Patient} from "../../models/Patient";
 
-export interface Patient {
-  family: string;
-  given: string;
-  dob: Date;
-  sex: string;
-  address: string;
-  phone: string;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: Patient[] = [
-  {family: 'METZ', given: 'Luc', dob: new Date(1478708162000), sex: 'M', address: 'Soisy', phone: '06-17-XX-XX-XX'},
-  {family: 'METZ', given: 'Viktor', dob: new Date(1478908162000), sex: 'M', address: 'Soisy', phone: '06-10-XX-XX-XX'}
-];
 
 /**
  * Data source for the PatientsTable view. This class should
@@ -26,22 +12,12 @@ const EXAMPLE_DATA: Patient[] = [
  * (including sorting, pagination, and filtering).
  */
 export class PatientsTableDataSource extends DataSource<Patient> {
-  data: Patient[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
-  isLoading$ = new BehaviorSubject<boolean>(false);
-  patients$ = new BehaviorSubject<Patient[]>([]);
+  data!: Patient[];
 
-  constructor(private patientService: PatientService) {
+  constructor() {
     super();
-  }
-
-  loadPatients(): void {
-    this.isLoading$.next(true);
-    this.patientService.findPatients().subscribe((patients) => {
-      this.patients$.next(patients);
-      this.isLoading$.next(false);
-    });
   }
 
   /**
@@ -50,7 +26,7 @@ export class PatientsTableDataSource extends DataSource<Patient> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<Patient[]> {
-    //return this.patients$.asObservable();
+
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -68,7 +44,7 @@ export class PatientsTableDataSource extends DataSource<Patient> {
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect(): void {
-    this.patients$.complete();
+
   }
 
   /**
@@ -94,7 +70,7 @@ export class PatientsTableDataSource extends DataSource<Patient> {
     }
 
     return data.sort((a, b) => {
-      const isAsc = this.sort?.direction === 'asc';
+      const isAsc = this.sort?.direction === 'desc';
       switch (this.sort?.active) {
         case 'family': return compare(+a.family, +b.family, isAsc);
         case 'given': return compare(a.given, b.given, isAsc);

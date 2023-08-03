@@ -6,6 +6,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @Component({
   selector: 'app-add-patient-dialog',
@@ -18,8 +20,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatButtonModule,
     NgIf,
     MatDialogModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],/*
+  providers:[
+    MatNativeDateModule,
+    MatDatepickerModule
+  ],*/
   templateUrl: './add-patient-dialog.component.html',
   styleUrls: ['./add-patient-dialog.component.css']
 })

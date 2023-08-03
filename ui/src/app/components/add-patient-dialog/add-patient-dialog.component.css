@@ -1,0 +1,41 @@
+.dialogFieldRows {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.dialogContents {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.leftFormFields {
+  margin-right: 10px;
+}
+
+.rightFormFields {
+  margin-left: 10px;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+#sex  {
+  width: 50%;
+}
+
+#dob  {
+  width: 150%;
+}
+
+#address  {
+  width: 140%;
+}
+
+#phone  {
+  width: 60%;
+}
+

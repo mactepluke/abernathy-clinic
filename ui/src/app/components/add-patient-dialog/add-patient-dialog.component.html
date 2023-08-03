@@ -1,26 +1,47 @@
-<h1 mat-dialog-title>Add patient</h1>
-<div mat-dialog-content [formGroup]="form">
-  <mat-form-field>
-    <mat-label>Family Name</mat-label>
-    <input matInput formControlName="family" placeholder="Family Name">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="given" placeholder="Given Name">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="dob" placeholder="Date of Birth">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="sex" placeholder="Sex">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="address" placeholder="Address">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="phone" placeholder="Phone">
-  </mat-form-field>
+<h1 mat-dialog-title>New patient</h1>
+
+<div mat-dialog-content class="dialogContents" [formGroup]="form">
+
+  <div class="dialogFieldRows">
+    <mat-form-field class="leftFormFields">
+      <mat-label>Family Name</mat-label>
+      <input matInput formControlName="family">
+    </mat-form-field>
+    <mat-form-field class="rightFormFields">
+      <mat-label>Given Name</mat-label>
+      <input matInput formControlName="given">
+    </mat-form-field>
+  </div>
+
+  <div class="dialogFieldRows">
+    <mat-form-field id="sex" class="leftFormFields">
+      <mat-label>Sex</mat-label>
+      <input matInput formControlName="sex">
+    </mat-form-field>
+    <mat-form-field id="dob" class="rightFormFields">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker"  formControlName="dob">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="dialogFieldRows">
+    <mat-form-field id="address" class="leftFormFields">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address">
+    </mat-form-field>
+    <mat-form-field id="phone" class="rightFormFields">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone">
+    </mat-form-field>
+  </div>
+
 </div>
-<div mat-dialog-actions>
+
+<div mat-dialog-actions class="centered">
   <button mat-raised-button (click)="onNoClick()">Cancel</button>
-  <button mat-raised-button [disabled]="form.invalid" (click)="onAdd()" cdkFocusInitial>Add</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onAdd()" cdkFocusInitial>Add</button>
 </div>

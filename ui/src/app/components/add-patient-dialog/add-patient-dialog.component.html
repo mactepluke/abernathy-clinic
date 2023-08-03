@@ -7,6 +7,7 @@
       <mat-label>Family Name</mat-label>
       <input matInput formControlName="family">
     </mat-form-field>
+
     <mat-form-field class="rightFormFields">
       <mat-label>Given Name</mat-label>
       <input matInput formControlName="given">
@@ -16,8 +17,13 @@
   <div class="dialogFieldRows">
     <mat-form-field id="sex" class="leftFormFields">
       <mat-label>Sex</mat-label>
-      <input matInput formControlName="sex">
+      <mat-select formControlName="sex">
+        <mat-option *ngFor="let sex of sexes" [value]="sex.value">
+          {{sex.viewValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
     <mat-form-field id="dob" class="rightFormFields">
       <mat-label>Date of Birth</mat-label>
       <input matInput [matDatepicker]="picker"  formControlName="dob">
@@ -43,5 +49,5 @@
 
 <div mat-dialog-actions class="centered">
   <button mat-raised-button (click)="onNoClick()">Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onAdd()" cdkFocusInitial>Add</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onAdd()">Add</button>
 </div>

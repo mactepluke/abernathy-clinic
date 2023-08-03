@@ -15,7 +15,11 @@ export const routes: Routes = [
   },
   {
     path:'mediscreen-abernathy/patients',
-    loadComponent: () => import('./app/pages/patients-page/patients-page.component').then(module => module.PatientsPageComponent),
+    loadComponent: () => import('./app/pages/patients-page/patients-page.component').then(module => module.PatientsPageComponent)
+  },
+  {
+    path:'mediscreen-abernathy/patient-record/:family/:given',
+    loadComponent: () => import('./app/pages/patient-record-page/patient-record-page.component').then(module => module.PatientRecordPageComponent)
   },
   {
     path: '**',

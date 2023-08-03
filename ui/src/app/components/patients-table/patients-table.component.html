@@ -28,20 +28,20 @@
     <!-- Address Column -->
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-      <td mat-cell *matCellDef="let row">{{row.address}}</td>
+      <td mat-cell *matCellDef="let row">{{row.address  | nullToDash}}</td>
     </ng-container>
 
     <!-- Phone Column -->
     <ng-container matColumnDef="phone">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
-      <td mat-cell *matCellDef="let row">{{row.phone}}</td>
+      <td mat-cell *matCellDef="let row">{{row.phone | nullToDash}}</td>
     </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-raised-button (click)="viewPatient()" class="button">
+        <button mat-raised-button (click)="viewPatient(row.family, row.given)" class="button">
           View
         </button>
       </td>

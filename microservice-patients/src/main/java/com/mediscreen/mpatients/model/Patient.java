@@ -33,8 +33,8 @@ public class Patient {
     @Column(length = 250)
     @Size(max = 250)
     private String address;
-    @Column(length = 250)
-    @Size(max = 250)
+    @Column(length = 20)
+    @Size(max = 20)
     private String phone;
 
     public Patient() {

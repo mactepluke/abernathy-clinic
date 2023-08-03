@@ -53,6 +53,23 @@ public class PatientController {
         return new ResponseEntity<>(patient, HttpStatus.CREATED);
     }
 
+    @GetMapping(value = "/get")
+    public ResponseEntity<Patient> get(
+            @RequestParam @NotBlank String family,
+            @RequestParam @NotBlank String given
+    )   {
+
+        Patient patient;
+
+        log.info("Get request received with params: family={}, given={}", family, given);
+        patient = patientService.find(family, given);
+
+        if (patient == null) throw new PatientNotFoundException("Patient was not found");
+
+        return new ResponseEntity<>(patient, HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "/getall")
     public ResponseEntity<List<Patient>> getAll()   {
 

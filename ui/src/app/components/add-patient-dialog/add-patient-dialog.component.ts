@@ -7,7 +7,12 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+
+interface Sex {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-add-patient-dialog',
@@ -22,17 +27,21 @@ import {MatNativeDateModule} from "@angular/material/core";
     MatDialogModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule,
-  ],/*
+    MatSelectModule
+  ],
   providers:[
-    MatNativeDateModule,
     MatDatepickerModule
-  ],*/
+  ],
   templateUrl: './add-patient-dialog.component.html',
   styleUrls: ['./add-patient-dialog.component.css']
 })
+
 export class AddPatientDialogComponent implements OnInit {
   form!: FormGroup;
+  sexes: Sex[] = [
+    {value: 'M', viewValue: 'Male'},
+    {value: 'F', viewValue: 'Female'}
+  ];
 
   constructor(public dialogRef: MatDialogRef<AddPatientDialogComponent>,
               private formBuilder : FormBuilder) {}
@@ -40,12 +49,12 @@ export class AddPatientDialogComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.formBuilder.group({
-      family: [null, Validators.required],
-      given: [null, Validators.required],
+      family: [null, [Validators.required, Validators.pattern("^[A-Za-zÀ-ÿ- ]{3,50}$")]],
+      given: [null, [Validators.required, Validators.pattern("^[A-Za-zÀ-ÿ- ]{3,50}$")]],
       dob: [null, Validators.required],
       sex: [null, Validators.required],
-      address: [null, null],
-      phone: [null, null]
+      address: [null, Validators.pattern("^[A-Za-zÀ-ÿ0-9-, ]{10,250}$")],
+      phone: [null, Validators.pattern("^[0-9-. ]{8,20}$")]
     });
   }
 

@@ -1,7 +1,7 @@
 .dialogFieldRows {
   display: flex;
-  justify-content: center;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .dialogContents {

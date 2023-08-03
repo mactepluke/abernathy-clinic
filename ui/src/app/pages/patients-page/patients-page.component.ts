@@ -8,6 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {AddPatientDialogComponent} from "../../components/add-patient-dialog/add-patient-dialog.component";
 import {Patient} from "../../models/Patient";
+import {PatientService} from "../../services/PatientService";
 
 
 @Component({
@@ -23,12 +24,15 @@ import {Patient} from "../../models/Patient";
     NgIf,
     MatDialogModule
   ],
+  providers: [
+    PatientService
+  ],
   styleUrls: ['./patients-page.component.css']
 })
 export class PatientsPageComponent {
   patient!: Patient;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private patientService: PatientService) {}
 
   addPatient() {
     const dialogRef = this.dialog.open(AddPatientDialogComponent);
@@ -36,7 +40,8 @@ export class PatientsPageComponent {
     dialogRef.afterClosed().subscribe(patient => {
       console.log('The dialog was closed');
       this.patient = patient;
-      console.log(patient);
+      console.log(this.patient);
+      this.patientService.addPatient(this.patient).subscribe( () => window.location.reload());
     });
   }
 }

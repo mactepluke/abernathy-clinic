@@ -4,7 +4,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import { PatientsTableDataSource} from './patients-table-datasource';
 import {DatePipe} from "@angular/common";
-import {PatientService} from "../../services/PatientService";
+import {PatientService} from "../../services/patient.service";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {Patient} from "../../models/Patient";

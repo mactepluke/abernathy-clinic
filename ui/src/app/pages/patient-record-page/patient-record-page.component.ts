@@ -1,13 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Patient} from "../../models/Patient";
-import {PatientService} from "../../services/PatientService";
+import {PatientService} from "../../services/patient.service";
+import {PatientInfoComponent} from "../../components/patient-info/patient-info.component";
 
 @Component({
   selector: 'app-patient-record-page',
   standalone: true,
   templateUrl: './patient-record-page.component.html',
   styleUrls: ['./patient-record-page.component.css'],
+  imports: [
+    PatientInfoComponent
+  ],
   providers: [
     PatientService
   ]

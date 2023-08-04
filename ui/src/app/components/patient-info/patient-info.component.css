@@ -1,0 +1,36 @@
+.cardFieldRows {
+  display: flex;
+  flex-direction: row;
+}
+
+.patientInfoContents {
+  display: flex;
+  flex-direction: column;
+}
+
+.formFields {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.main-card  {
+}
+
+.centered {
+  display: flex;
+  justify-content: space-between;
+}
+
+#update {
+  margin-left: 10px;
+}
+
+#address  {
+  width: 800px;
+}
+
+.button-div {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+

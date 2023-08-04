@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Confirm deletion?</h1>
+<div mat-dialog-content>
+  <p>This item, and all attached data, will be permanently deleted.</p>
+  <p>This action is not reversible.</p>
+</div>
+<div mat-dialog-actions class="centered">
+  <button mat-button color="primary" (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onConfirm()">Confirm</button>
+</div>

@@ -8,7 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {AddPatientDialogComponent} from "../../components/add-patient-dialog/add-patient-dialog.component";
 import {Patient} from "../../models/Patient";
-import {PatientService} from "../../services/PatientService";
+import {PatientService} from "../../services/patient.service";
 
 
 @Component({
@@ -38,10 +38,12 @@ export class PatientsPageComponent {
     const dialogRef = this.dialog.open(AddPatientDialogComponent);
 
     dialogRef.afterClosed().subscribe(patient => {
-      console.log('The dialog was closed');
       this.patient = patient;
       console.log(this.patient);
-      this.patientService.addPatient(this.patient).subscribe( () => window.location.reload());
+      this.patientService.addPatient(this.patient).subscribe( () => {
+        console.log("Add patient successful.")
+        window.location.reload()}
+      );
     });
   }
 }

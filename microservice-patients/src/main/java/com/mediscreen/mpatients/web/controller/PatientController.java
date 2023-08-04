@@ -107,7 +107,7 @@ public class PatientController {
     }
 
     @DeleteMapping(value = "/delete")
-    public ResponseEntity<Patient>  delete(String family, String given)    {
+    public ResponseEntity<Patient> delete(String family, String given)    {
 
         log.info("Delete request received with params: family={}, given={}", family, given);
 

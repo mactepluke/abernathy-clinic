@@ -40,7 +40,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String family, String given, LocalDate dob, char sex, String address, String phone) {
+    public Patient(String family, String given, @NotNull LocalDate dob, char sex, String address, String phone) {
         this.family = family;
         this.given = given;
         this.dob = dob;
@@ -73,11 +73,11 @@ public class Patient {
         this.given = given;
     }
 
-    public LocalDate getDob() {
+    public @NotNull LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
+    public void setDob(@NotNull LocalDate dob) {
         this.dob = dob;
     }
 

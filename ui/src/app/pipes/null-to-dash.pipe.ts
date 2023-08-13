@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NullToDashPipe implements PipeTransform {
 
   transform(value: string): string {
-    return value === 'null' ? '–' : value;
+    return (value === 'null' || value === '' || value === undefined) ? '–' : value;
   }
 
 }

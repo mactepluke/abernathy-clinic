@@ -1,63 +1,58 @@
-package com.mediscreen.mpatients.web.controller;
+package com.mediscreen.mhistory.web.controller;
 
-import com.mediscreen.mpatients.model.Patient;
-import com.mediscreen.mpatients.service.PatientService;
-import com.mediscreen.mpatients.web.exceptions.CannotHandlePatientException;
-import com.mediscreen.mpatients.web.exceptions.PatientNotFoundException;
+import com.mediscreen.mhistory.model.Note;
+import com.mediscreen.mhistory.service.NoteService;
+import com.mediscreen.mhistory.web.exceptions.CannotHandleNoteException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static java.lang.Math.min;
+
 @Log4j2
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/history")
 @CrossOrigin(origins = "http://localhost:4200")
 @Validated
-public class PatientController {
+public class NoteController {
 
     @Autowired
-    PatientService patientService;
+    NoteService noteService;
 
-    @PostMapping(value = "/add")
-    public ResponseEntity<Patient>  add(
+    @PostMapping(value = "/addNote")
+    public ResponseEntity<Note> add(
             @Valid
-            @RequestParam @NotBlank String family,
-            @RequestParam @NotBlank String given,
-            @RequestParam @NotBlank @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dob,
-            @RequestParam @NotBlank char sex,
-            @RequestParam(required = false) String address,
-            @RequestParam(required = false) String phone
+            @RequestParam @NotBlank String patientId,
+            @RequestParam @NotNull String title,
+            @RequestParam @NotNull String content
     )   {
 
-        Patient patient;
+        Note note;
+        String shortContent = content.length() > 0 ? content.substring(0, min(20, content.length() - 1)) : "";
 
-        log.info("Add request received with params: family={}, given={}, dob={}, sex={}, address={}, phone={}",
-                family, given, dob, sex, address, phone);
+        log.info("Add request received with params: patientId={}, title={}, content={}...",
+                patientId, title, shortContent);
 
-        patient = patientService.add(family, given, dob, sex, address, phone);
+        note = noteService.add(patientId, title, content);
 
-        if (patient == null) throw new CannotHandlePatientException("Cannot add patient");
+        if (note == null) throw new CannotHandleNoteException("Cannot add note");
 
-        return new ResponseEntity<>(patient, HttpStatus.CREATED);
+        return new ResponseEntity<>(note, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/get")
+    //TODO Implement CRUD methods in rest controller
+
+    /*@GetMapping(value = "/get")
     public ResponseEntity<Patient> get(
             @Valid
             @RequestParam @NotBlank String family,
@@ -126,6 +121,5 @@ public class PatientController {
         if (patient == null) throw new PatientNotFoundException("Could not delete patient");
 
         return new ResponseEntity<>(patient, HttpStatus.OK);
-    }
-
+    }*/
 }

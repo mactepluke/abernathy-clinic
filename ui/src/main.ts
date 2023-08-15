@@ -22,6 +22,10 @@ export const routes: Routes = [
     loadComponent: () => import('./app/pages/patient-record-page/patient-record-page.component').then(module => module.PatientRecordPageComponent)
   },
   {
+    path: 'mediscreen-abernathy/patient-record/:id',
+    loadComponent: () => import('./app/pages/note-page/note-page.component').then(module => module.NotePageComponent)
+  },
+  {
     path: '**',
     loadComponent: () => import('./app/pages/page-not-found/page-not-found.component').then(module => module.PageNotFoundComponent)
   }

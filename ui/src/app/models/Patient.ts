@@ -1,4 +1,5 @@
 export interface Patient {
+  patientId: number;
   family: string;
   given: string;
   dob: Date;

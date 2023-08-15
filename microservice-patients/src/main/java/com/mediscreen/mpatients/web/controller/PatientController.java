@@ -6,6 +6,7 @@ import com.mediscreen.mpatients.web.exceptions.CannotHandlePatientException;
 import com.mediscreen.mpatients.web.exceptions.PatientNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -39,10 +40,10 @@ public class PatientController {
             @Valid
             @RequestParam @NotBlank String family,
             @RequestParam @NotBlank String given,
-            @RequestParam @NotBlank @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dob,
-            @RequestParam @NotBlank char sex,
-            @RequestParam(required = false) String address,
-            @RequestParam(required = false) String phone
+            @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dob,
+            @RequestParam char sex,
+            @RequestParam(required = false, defaultValue = "") String address,
+            @RequestParam(required = false, defaultValue = "") String phone
     )   {
 
         Patient patient;
@@ -95,10 +96,10 @@ public class PatientController {
             @RequestParam @NotBlank String given,
             @RequestParam @NotBlank String newFamily,
             @RequestParam @NotBlank String newGiven,
-            @RequestParam @NotBlank @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newDob,
-            @RequestParam @NotBlank char newSex,
-            @RequestParam(required = false) String newAddress,
-            @RequestParam(required = false) String newPhone
+            @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newDob,
+            @RequestParam char newSex,
+            @RequestParam(required = false, defaultValue = "") String newAddress,
+            @RequestParam(required = false, defaultValue = "") String newPhone
     )   {
         Patient patient;
 

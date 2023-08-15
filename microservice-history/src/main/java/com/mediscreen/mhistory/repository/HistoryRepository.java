@@ -8,8 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface NoteRepository extends MongoRepository<Note, String> {
+public interface HistoryRepository extends MongoRepository<Note, String> {
 
     List<LightNote> findByPatientIdOrderByDateTimeDesc(String id);
 
+    void deleteAllByPatientId(String patientId);
 }

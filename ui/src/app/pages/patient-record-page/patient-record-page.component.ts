@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Patient} from "../../models/Patient";
 import {PatientService} from "../../services/patient.service";
 import {PatientInfoComponent} from "../../components/patient-info/patient-info.component";
+import {HistoryTableComponent} from "../../components/history-table/history-table.component";
 
 @Component({
   selector: 'app-patient-record-page',
@@ -10,7 +11,8 @@ import {PatientInfoComponent} from "../../components/patient-info/patient-info.c
   templateUrl: './patient-record-page.component.html',
   styleUrls: ['./patient-record-page.component.css'],
   imports: [
-    PatientInfoComponent
+    PatientInfoComponent,
+    HistoryTableComponent
   ],
   providers: [
     PatientService

@@ -16,6 +16,7 @@ import {Router} from "@angular/router";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {SnackBarComponent} from "../snack-bar/snack-bar.component";
+import {HistoryService} from "../../services/history.service";
 
 interface Sex {
   value: string;
@@ -41,6 +42,7 @@ interface Sex {
   ],
   providers: [
     PatientService,
+    HistoryService,
     PatientRecordService
   ],
   templateUrl: './patient-info.component.html',
@@ -58,6 +60,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
 
   constructor(private formBuilder: FormBuilder,
               private patientService: PatientService,
+              private historyService: HistoryService,
               private patientRecordService: PatientRecordService,
               private router: Router,
               private dialog: MatDialog,
@@ -78,8 +81,8 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       given: this.currentPatient.given,
       sex: this.currentPatient.sex,
       dob: this.currentPatient.dob,
-      address: this.currentPatient.address,
-      phone: this.currentPatient.phone,
+      address: this.currentPatient.address === 'null' ? '' : this.currentPatient.address,
+      phone: this.currentPatient.phone === 'null' ? '' : this.currentPatient.phone,
     });
   }
 
@@ -108,7 +111,9 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.patientService.deletePatient(this.currentPatient.family, this.currentPatient.given).subscribe(() => this.router.navigate(['mediscreen-abernathy/patients']));
+        this.historyService.deleteAllNotes(this.currentPatient.patientId.toString()).subscribe(
+          () => this.patientService.deletePatient(this.currentPatient.family, this.currentPatient.given)
+            .subscribe(() => this.router.navigate(['mediscreen-abernathy/patients'])));
       }
     });
   }

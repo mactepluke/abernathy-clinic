@@ -2,23 +2,22 @@ package com.mediscreen.mhistory.service;
 
 import com.mediscreen.mhistory.model.LightNote;
 import com.mediscreen.mhistory.model.Note;
-import com.mediscreen.mhistory.repository.NoteRepository;
+import com.mediscreen.mhistory.repository.HistoryRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Log4j2
 @Service
-public class NoteService {
+public class HistoryService {
 
     @Autowired
-    NoteRepository noteRepository;
+    HistoryRepository historyRepository;
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public Note add(String patientId,
@@ -31,17 +30,17 @@ public class NoteService {
                 LocalDateTime.now(),
                 content
         );
-        return noteRepository.insert(note);
+        return historyRepository.insert(note);
     }
 
     @Transactional(readOnly = true)
     public List<LightNote> findAllNotes(String patientId) {
-        return noteRepository.findByPatientIdOrderByDateTimeDesc(patientId);
+        return historyRepository.findByPatientIdOrderByDateTimeDesc(patientId);
     }
 
     @Transactional(readOnly = true)
     public Note findById(String id) {
-        return noteRepository.findById(id).orElse(null);
+        return historyRepository.findById(id).orElse(null);
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -56,7 +55,7 @@ public class NoteService {
             note.setContent(content);
             note.setDateTime(LocalDateTime.now());
 
-            note = noteRepository.save(note);
+            note = historyRepository.save(note);
         } else {
             log.warn("Note doest not exist with id: {}", id);
         }
@@ -65,6 +64,12 @@ public class NoteService {
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void delete(String id) {
-        noteRepository.deleteById(id);
+        historyRepository.deleteById(id);
     }
+
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public void deleteAll(String patientId) {
+        historyRepository.deleteAllByPatientId(patientId);
+    }
+
 }

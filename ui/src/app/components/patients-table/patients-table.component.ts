@@ -10,6 +10,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {Patient} from "../../models/Patient";
 import {NullToDashPipe} from "../../pipes/null-to-dash.pipe";
 import {Router} from "@angular/router";
+import {MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-patients-table',
@@ -22,7 +23,8 @@ import {Router} from "@angular/router";
     DatePipe,
     MatInputModule,
     MatButtonModule,
-    NullToDashPipe
+    NullToDashPipe,
+    MatIconModule
   ],
   providers: [
     PatientService

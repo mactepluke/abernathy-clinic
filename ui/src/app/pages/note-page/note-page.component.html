@@ -1,61 +1,25 @@
-<!--TODO Implement the form for notes-->
-
-<!--
 <mat-card [formGroup]="form">
   <mat-card-header>
-    <mat-card-title>{{currentPatient.given}} {{currentPatient.family}}</mat-card-title>
+    <mat-card-title>{{note.title | titlecase}} -- {{note.dateTime | date: 'dd/MM/yyyy, HH:mm'}}</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <div class="cardFieldRows">
+  <mat-card-content class="contents">
       <mat-form-field class="formFields">
-        <mat-label>Family Name</mat-label>
-        <input matInput formControlName="family">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
       </mat-form-field>
 
       <mat-form-field class="formFields">
-        <mat-label>Given Name</mat-label>
-        <input matInput formControlName="given">
+        <mat-label>Content</mat-label>
+        <textarea class="text-style" rows="10" matInput formControlName="content"></textarea>
       </mat-form-field>
 
-      <mat-form-field id="sex" class="formFields">
-        <mat-label>Sex</mat-label>
-        <mat-select formControlName="sex">
-          <mat-option *ngFor="let sex of sexes" [value]="sex.value">
-            {{sex.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field id="dob" class="formFields">
-        <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dob">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker">
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field id="phone" class="formFields">
-        <mat-label>Phone</mat-label>
-        <input matInput formControlName="phone">
-      </mat-form-field>
-    </div>
-
-    <div class="cardFieldRows">
-      <mat-form-field id="address" class="formFields">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="address">
-      </mat-form-field>
-    </div>
   </mat-card-content>
   <mat-card-actions class="centered">
     <div class="button-div">
+      <button mat-raised-button (click)="onCancel()">Cancel</button>
       <button mat-raised-button (click)="onReset()">Reset</button>
-      <button id="update" mat-raised-button color="primary" [disabled]="form.invalid" (click)="onUpdate()">Update</button>
-    </div>
-    <div class="button-div">
-      <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+      <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+      <!--<button id="update" mat-raised-button color="primary" [disabled]="form.invalid" (click)="onUpdate()">Update</button>-->
     </div>
   </mat-card-actions>
 </mat-card>
--->

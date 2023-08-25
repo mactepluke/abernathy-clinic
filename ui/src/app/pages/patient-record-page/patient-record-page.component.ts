@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Patient} from "../../models/Patient";
 import {PatientService} from "../../services/patient.service";
 import {PatientInfoComponent} from "../../components/patient-info/patient-info.component";
@@ -25,9 +25,9 @@ export class PatientRecordPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe((params: ParamMap): void => {
       this.patientService.findPatient(<string>params.get('family'), <string>params.get('given'))
-        .subscribe((patient) => {
+        .subscribe((patient: Patient): void => {
         this.patient = patient;
       });
     });

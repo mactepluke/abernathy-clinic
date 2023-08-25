@@ -23,7 +23,7 @@ export class HistoryService {
     return this.http.post<Note>(`${environment.mhistoryUrl}/history/addNote?patientId=${note.patientId}&title=${note.title}&content=${note.content}`, '');
   }
 
-  updateNote(id: string, note: Note): Observable<Note> {
+  updateNote(note: Note): Observable<Note> {
     return this.http.put<Note>(`${environment.mhistoryUrl}/history/updateNote?id=${note.id}&title=${note.title}&content=${note.content}`, '');
   }
 
@@ -33,5 +33,12 @@ export class HistoryService {
 
   deleteAllNotes(patientId: string): Observable<void> {
     return this.http.delete<void>(`${environment.mhistoryUrl}/history/deleteAllNotes?patientId=${patientId}`);
+  }
+
+  equals(note1: Note, note2: Note): boolean {
+    return note1.id === note2.id
+      && note1.title === note2.title
+      && note1.content === note2.content
+      && note1.patientId === note2.patientId
   }
 }

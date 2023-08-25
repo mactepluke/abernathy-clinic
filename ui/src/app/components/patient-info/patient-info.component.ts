@@ -4,7 +4,7 @@ import {Patient} from "../../models/Patient";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
@@ -71,11 +71,11 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     this.form = this.patientRecordService.createPatientForm();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.onReset();
   }
 
-  onReset() {
+  onReset(): void {
     this.form.setValue({
       family: this.currentPatient.family,
       given: this.currentPatient.given,
@@ -86,7 +86,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onUpdate() {
+  onUpdate(): void {
     this.newPatient = this.form.value;
     if (this.patientRecordService.equals(this.newPatient, this.currentPatient)) {
       console.log("No fields changed.")
@@ -100,15 +100,15 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openSnackBar()  {
+  openSnackBar(): void  {
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 3000,
       data: 'rrr' // TODO try to make something of it
     });
   }
 
-  onDelete() {
-    const dialogRef = this.dialog.open(DeleteDialogComponent);
+  onDelete(): void {
+    const dialogRef: MatDialogRef<DeleteDialogComponent> = this.dialog.open(DeleteDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.historyService.deleteAllNotes(this.currentPatient.patientId.toString()).subscribe(

@@ -10,3 +10,12 @@
 #history  {
   margin-top: 10px;
 }
+
+#trash  {
+  margin-left: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+}

@@ -10,6 +10,9 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {DatePipe, TitleCasePipe} from "@angular/common";
 import {Router} from "@angular/router";
+import {MatIconModule} from "@angular/material/icon";
+import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-history-table',
@@ -23,7 +26,9 @@ import {Router} from "@angular/router";
     MatCardModule,
     MatButtonModule,
     DatePipe,
-    TitleCasePipe
+    TitleCasePipe,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [
     HistoryService
@@ -42,7 +47,9 @@ export class HistoryTableComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['title', 'dateTime', 'action'];
 
-  constructor(private historyService: HistoryService, private router: Router) {
+  constructor(private historyService: HistoryService,
+              private router: Router,
+              private dialog: MatDialog) {
     this.dataSource = new HistoryTableDataSource();
   }
 
@@ -55,11 +62,22 @@ export class HistoryTableComponent implements AfterViewInit {
     });
   }
 
-  addNote() {
-      this.router.navigate(['mediscreen-abernathy/patient-record', '-1']);
+  addNote(): void {
+      this.router.navigate(['mediscreen-abernathy/patient-note', '-1', this.currentPatient.patientId]);
   }
 
-  viewNote(id: string) {
-    this.router.navigate(['mediscreen-abernathy/patient-record', id]);
+  viewNote(id: string): void {
+    this.router.navigate(['mediscreen-abernathy/patient-note', id, this.currentPatient.patientId]);
+  }
+
+  deleteNote(id: string): void {
+    const dialogRef: MatDialogRef<DeleteDialogComponent> = this.dialog.open(DeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.historyService.deleteNote(id)
+            .subscribe(() => window.location.reload());
+      }
+    });
   }
 }

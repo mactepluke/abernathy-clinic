@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 
-.patientInfoContents {
+.contents {
   display: flex;
   flex-direction: column;
 }
@@ -16,6 +16,10 @@
 .centered {
   display: flex;
   justify-content: space-between;
+}
+
+.text-style {
+  white-space: pre-wrap;
 }
 
 #update {

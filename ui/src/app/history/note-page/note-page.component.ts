@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {HistoryService} from "../../services/history.service";
-import {Note} from "../../models/Note";
+import {HistoryService} from "../services/history.service";
+import {Note} from "../models/Note";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";

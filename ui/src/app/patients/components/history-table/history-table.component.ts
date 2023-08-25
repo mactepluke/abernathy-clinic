@@ -3,8 +3,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import {HistoryTableDataSource} from './history-table-datasource';
-import {HistoryService} from "../../services/history.service";
-import {LightNote} from "../../models/LightNote";
+import {HistoryService} from "../../../history/services/history.service";
+import {LightNote} from "../../../history/models/LightNote";
 import {Patient} from "../../models/Patient";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
@@ -12,7 +12,7 @@ import {DatePipe, TitleCasePipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {DeleteDialogComponent} from "../../../shared/components/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-history-table',

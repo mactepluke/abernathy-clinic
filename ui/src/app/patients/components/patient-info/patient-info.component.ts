@@ -13,10 +13,10 @@ import {MatCardModule} from "@angular/material/card";
 import {PatientService} from "../../services/patient.service";
 import {PatientRecordService} from "../../services/patient-record.service";
 import {Router} from "@angular/router";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {DeleteDialogComponent} from "../../../shared/components/delete-dialog/delete-dialog.component";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import {SnackBarComponent} from "../snack-bar/snack-bar.component";
-import {HistoryService} from "../../services/history.service";
+import {SnackBarComponent} from "../../../general/components/snack-bar/snack-bar.component";
+import {HistoryService} from "../../../history/services/history.service";
 
 interface Sex {
   value: string;

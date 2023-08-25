@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {NgSwitch, NgSwitchDefault, NgSwitchCase, DatePipe} from '@angular/common';
-import {NavigationComponent} from "./components/navigation/navigation.component";
+import {NavigationComponent} from "./general/components/navigation/navigation.component";
 import {RouterOutlet} from "@angular/router";
 import {MatNativeDateModule} from "@angular/material/core";
 

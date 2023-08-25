@@ -6,3 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cdk-text-field-autofill-monitored {
   white-space: pre-wrap!important;
 }
+
+.cdk-text-field-autofill-monitored {
+  white-space: pre-wrap!important;
+}

@@ -8,7 +8,7 @@ import {PatientService} from "../../services/patient.service";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {Patient} from "../../models/Patient";
-import {NullToDashPipe} from "../../pipes/null-to-dash.pipe";
+import {NullToDashPipe} from "../../../shared/pipes/null-to-dash.pipe";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 

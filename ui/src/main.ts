@@ -11,23 +11,23 @@ export const routes: Routes = [
   },
   {
     path:'mediscreen-abernathy',
-    loadComponent: () => import('./app/pages/home-page/home-page.component').then(module => module.HomePageComponent)
+    loadComponent: () => import('./app/general/pages/home-page/home-page.component').then(module => module.HomePageComponent)
   },
   {
     path:'mediscreen-abernathy/patients',
-    loadComponent: () => import('./app/pages/patients-page/patients-page.component').then(module => module.PatientsPageComponent)
+    loadComponent: () => import('./app/patients/pages/patients-page/patients-page.component').then(module => module.PatientsPageComponent)
   },
   {
     path:'mediscreen-abernathy/patient-record/:family/:given',
-    loadComponent: () => import('./app/pages/patient-record-page/patient-record-page.component').then(module => module.PatientRecordPageComponent)
+    loadComponent: () => import('./app/patients/pages/patient-record-page/patient-record-page.component').then(module => module.PatientRecordPageComponent)
   },
   {
     path: 'mediscreen-abernathy/patient-note/:id/:patientId',
-    loadComponent: () => import('./app/pages/note-page/note-page.component').then(module => module.NotePageComponent)
+    loadComponent: () => import('./app/history/note-page/note-page.component').then(module => module.NotePageComponent)
   },
   {
     path: '**',
-    loadComponent: () => import('./app/pages/page-not-found/page-not-found.component').then(module => module.PageNotFoundComponent)
+    loadComponent: () => import('./app/general/pages/page-not-found/page-not-found.component').then(module => module.PageNotFoundComponent)
   }
 ]
 

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import {LightNote} from "../../../history/models/LightNote";
+import {LightNote} from "../../models/LightNote";
 
 
 /**
@@ -69,7 +69,7 @@ export class HistoryTableDataSource extends DataSource<LightNote> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'title': return compare(a.title, b.title, isAsc);
+        case 'title': return compare(+a.title, +b.title, isAsc);
         case 'dateTime': return compare(+a.dateTime, +b.dateTime, isAsc);
         default: return 0;
       }

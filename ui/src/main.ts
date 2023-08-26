@@ -22,7 +22,7 @@ export const routes: Routes = [
     loadComponent: () => import('./app/patients/pages/patient-record-page/patient-record-page.component').then(module => module.PatientRecordPageComponent)
   },
   {
-    path: 'mediscreen-abernathy/patient-note/:id/:patientId',
+    path: 'mediscreen-abernathy/patient-note/:id/:patientId/:family/:given',
     loadComponent: () => import('./app/history/note-page/note-page.component').then(module => module.NotePageComponent)
   },
   {

@@ -73,9 +73,9 @@ export class PatientsTableDataSource extends DataSource<Patient> {
       const isAsc = this.sort?.direction === 'desc';
       switch (this.sort?.active) {
         case 'family': return compare(+a.family, +b.family, isAsc);
-        case 'given': return compare(a.given, b.given, isAsc);
+        case 'given': return compare(+a.given, +b.given, isAsc);
         case 'dob': return compare(+a.dob, +b.dob, isAsc);
-        case 'sex': return compare(+a.sex, +b.sex, isAsc);
+        case 'sex': return compare(a.sex, b.sex, isAsc);
         case 'address': return compare(+a.address, +b.address, isAsc);
         case 'phone': return compare(+a.phone, +b.phone, isAsc);
 

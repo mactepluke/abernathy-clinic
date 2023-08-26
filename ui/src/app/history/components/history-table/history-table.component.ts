@@ -3,9 +3,9 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import {HistoryTableDataSource} from './history-table-datasource';
-import {HistoryService} from "../../../history/services/history.service";
-import {LightNote} from "../../../history/models/LightNote";
-import {Patient} from "../../models/Patient";
+import {HistoryService} from "../../services/history.service";
+import {LightNote} from "../../models/LightNote";
+import {Patient} from "../../../patients/models/Patient";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {DatePipe, TitleCasePipe} from "@angular/common";
@@ -54,7 +54,7 @@ export class HistoryTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.historyService.findHistory(this.currentPatient.patientId).subscribe((data) => {
+    this.historyService.findHistory(this.currentPatient.patientId).subscribe((data: LightNote[]): void => {
       this.dataSource.data = data;
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -63,11 +63,19 @@ export class HistoryTableComponent implements AfterViewInit {
   }
 
   addNote(): void {
-      this.router.navigate(['mediscreen-abernathy/patient-note', '-1', this.currentPatient.patientId]);
+      this.router.navigate(['mediscreen-abernathy/patient-note',
+        '-1',
+        this.currentPatient.patientId,
+        this.currentPatient.family,
+        this.currentPatient.given]);
   }
 
   viewNote(id: string): void {
-    this.router.navigate(['mediscreen-abernathy/patient-note', id, this.currentPatient.patientId]);
+    this.router.navigate(['mediscreen-abernathy/patient-note',
+      id,
+      this.currentPatient.patientId,
+      this.currentPatient.family,
+      this.currentPatient.given]);
   }
 
   deleteNote(id: string): void {

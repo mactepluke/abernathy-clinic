@@ -32,10 +32,9 @@ export class NotePageComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
     this.form = this.formBuilder.group({
-      title: [null, [Validators.required, Validators.pattern("^[A-Za-zÀ-ÿ-\'\".,?/:… ]{1,50}$")]],
-      content: [null, [Validators.required, Validators.pattern("^[A-Za-zÀ-ÿ-\'\".,?/:… ]{1,2000}$")]],
+      title: [null, [Validators.required, Validators.pattern("^.{1,100}$")]],
+      content: [null, [Validators.required, Validators.pattern("^.{1,8000}$")]],
     });
 
     this.route.paramMap.subscribe((params: ParamMap): void => {
@@ -72,8 +71,10 @@ export class NotePageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onCancel() {
-    this.router.navigate(['..']);
+  onBack() {
+    this.route.paramMap.subscribe((params: ParamMap): void => {
+      this.router.navigate(['mediscreen-abernathy/patient-record', <string>params.get('family'), <string>params.get('given')])
+  })
   }
 
   onSave() {
@@ -88,7 +89,6 @@ export class NotePageComponent implements OnInit, AfterViewInit {
 
       if (this.newNote.id === '-1') {
         this.historyService.addNote(this.newNote).subscribe((note: Note): void => {
-          this.router.navigate(['..']);
           this.note = note;
           this.onReset();
           //this.openSnackBar();
@@ -96,7 +96,6 @@ export class NotePageComponent implements OnInit, AfterViewInit {
         });
       } else {
         this.historyService.updateNote(this.newNote).subscribe((note: Note): void => {
-          this.router.navigate(['..']);
           this.note = note;
           this.onReset();
           //this.openSnackBar();

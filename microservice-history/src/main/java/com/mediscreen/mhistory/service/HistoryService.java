@@ -39,6 +39,11 @@ public class HistoryService {
     }
 
     @Transactional(readOnly = true)
+    public List<Note> findAllNotesWithContent(String patientId) {
+        return historyRepository.findByPatientId(patientId);
+    }
+
+    @Transactional(readOnly = true)
     public Note findById(String id) {
         return historyRepository.findById(id).orElse(null);
     }

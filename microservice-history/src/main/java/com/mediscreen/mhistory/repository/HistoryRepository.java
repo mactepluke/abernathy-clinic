@@ -13,4 +13,6 @@ public interface HistoryRepository extends MongoRepository<Note, String> {
     List<LightNote> findByPatientIdOrderByDateTimeDesc(String id);
 
     void deleteAllByPatientId(String patientId);
+
+    List<Note> findByPatientId(String patientId);
 }

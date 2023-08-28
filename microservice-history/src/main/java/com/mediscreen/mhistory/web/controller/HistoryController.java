@@ -80,6 +80,24 @@ public class HistoryController {
 
         return new ResponseEntity<>(history, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/getFullHistory")
+    public ResponseEntity<List<Note>> getAllWithContent(@Valid @RequestParam @NotBlank String patientId)   {
+
+        List<Note> history;
+
+        if (patientId == null
+                || patientId.isEmpty()
+                || patientId.equals("undefined")) throw new CannotHandleNoteException("PatientId is invalid");
+
+        log.info("Get full history request received with patientId={}", patientId);
+        history = historyService.findAllNotesWithContent(patientId);
+
+        if (history == null) throw new NoteNotFoundException("Patient history was not found");
+
+        return new ResponseEntity<>(history, HttpStatus.OK);
+    }
+
     @PutMapping(value = "/updateNote")
     public ResponseEntity<Note>  updateNote(
             @Valid

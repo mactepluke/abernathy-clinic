@@ -4,6 +4,7 @@ import {Patient} from "../../models/Patient";
 import {PatientService} from "../../services/patient.service";
 import {PatientInfoComponent} from "../../components/patient-info/patient-info.component";
 import {HistoryTableComponent} from "../../../history/components/history-table/history-table.component";
+import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessment/diabetes-assessment.component";
 
 @Component({
   selector: 'app-patient-record-page',
@@ -12,7 +13,8 @@ import {HistoryTableComponent} from "../../../history/components/history-table/h
   styleUrls: ['./patient-record-page.component.css'],
   imports: [
     PatientInfoComponent,
-    HistoryTableComponent
+    HistoryTableComponent,
+    DiabetesAssessmentComponent
   ],
   providers: [
     PatientService

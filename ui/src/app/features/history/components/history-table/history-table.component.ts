@@ -12,7 +12,7 @@ import {DatePipe, TitleCasePipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
-import {DeleteDialogComponent} from "../../../shared/components/delete-dialog/delete-dialog.component";
+import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog/delete-dialog.component";
 
 @Component({
   selector: 'app-history-table',

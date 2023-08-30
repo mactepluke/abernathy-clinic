@@ -1,6 +1,6 @@
 package com.mediscreen.massessment.web.controller;
 
-import com.mediscreen.massessment.model.RiskLevel;
+import com.mediscreen.massessment.model.DiabetesRiskLevel;
 import com.mediscreen.massessment.service.AssessmentService;
 import com.mediscreen.massessment.web.exceptions.CannotHandleAssessmentException;
 import jakarta.validation.constraints.NotNull;
@@ -32,23 +32,24 @@ public class AssessmentController {
     AssessmentService assessmentService;
 
     @GetMapping(value = "/assessDiabetesRisk")
-    public ResponseEntity<RiskLevel> assessDiabetesRisk(@Valid @RequestParam @NotBlank String patientId,
-                                                        @RequestParam char sex,
-                                                        @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dob)    {
+    public ResponseEntity<DiabetesRiskLevel> assessDiabetesRisk(@Valid @RequestParam @NotBlank String patientId,
+                                                                @RequestParam char sex,
+                                                                @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dob)    {
 
-        RiskLevel assessment;
+        DiabetesRiskLevel assessment;
 
         log.info("Diabetes assessment request received with params: patientId={}, sex={}, dob={}",
                 patientId, sex, dob);
 
         assessment = assessmentService.assessDiabetesRisk(patientId, sex, dob);
 
-        if (assessment == null || assessment == RiskLevel.UNKNOWN) throw new CannotHandleAssessmentException("Could not assess diabetes risk for patientId="
+        if (assessment == null || assessment == DiabetesRiskLevel.UNKNOWN) throw new CannotHandleAssessmentException("Could not assess diabetes risk for patientId="
                 + patientId
                 + " (assessment="
                 + assessment
                 + ")");
 
+        log.debug("ASSESSMENT RESULT={}", assessment);
         return new ResponseEntity<>(assessment, HttpStatus.OK);
     }
 

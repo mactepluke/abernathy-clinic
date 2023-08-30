@@ -1,6 +1,6 @@
 package com.mediscreen.massessment.model;
 
-public enum RiskLevel {
+public enum DiabetesRiskLevel {
     UNKNOWN,
     NONE,
     BORDERLINE,

@@ -13,10 +13,11 @@ import {MatCardModule} from "@angular/material/card";
 import {PatientService} from "../../services/patient.service";
 import {PatientRecordService} from "../../services/patient-record.service";
 import {Router} from "@angular/router";
-import {DeleteDialogComponent} from "../../../shared/components/delete-dialog/delete-dialog.component";
+import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog/delete-dialog.component";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import {SnackBarComponent} from "../../../general/components/snack-bar/snack-bar.component";
+import {SnackBarComponent} from "../../../../general/components/snack-bar/snack-bar.component";
 import {HistoryService} from "../../../history/services/history.service";
+import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessment/diabetes-assessment.component";
 
 interface Sex {
   value: string;
@@ -38,7 +39,8 @@ interface Sex {
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DiabetesAssessmentComponent
   ],
   providers: [
     PatientService,
@@ -91,9 +93,9 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
     if (this.patientRecordService.equals(this.newPatient, this.currentPatient)) {
       console.log("No fields changed.")
     } else {
-      this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient).subscribe((patient) => {
+      this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient).subscribe((patient: Patient): void => {
         this.currentPatient = patient;
-        this.onReset();
+        window.location.reload();
         this.openSnackBar();
         console.log("Update successful.")
       });

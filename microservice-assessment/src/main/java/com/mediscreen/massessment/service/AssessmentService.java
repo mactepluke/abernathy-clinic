@@ -1,7 +1,7 @@
 package com.mediscreen.massessment.service;
 
 import com.mediscreen.massessment.dto.NoteContentDTO;
-import com.mediscreen.massessment.model.RiskLevel;
+import com.mediscreen.massessment.model.DiabetesRiskLevel;
 import com.mediscreen.massessment.proxies.PatientHistoryApiProxy;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
@@ -14,7 +14,6 @@ import static java.time.temporal.ChronoUnit.YEARS;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -40,38 +39,29 @@ public class AssessmentService {
     @Value("${early_onset_old_trigger_threshold:8}")
     private int earlyOnsetOldTriggerThreshold;
 
-    //private final List<String> streamlinedTerms;
 
     public AssessmentService() {
-        //this.streamlinedTerms = new ArrayList<>();
     }
 
     @Autowired
     PatientHistoryApiProxy patientHistoryApiProxy;
 
-    public RiskLevel assessDiabetesRisk(String patientId, char sex, LocalDate dob)  {
+    public DiabetesRiskLevel assessDiabetesRisk(String patientId, char sex, LocalDate dob)  {
 
-        RiskLevel riskLevel;
+        DiabetesRiskLevel diabetesRiskLevel;
         int triggers;
-
-        log.debug(this.triggeringTerms);
-
-        /*if (this.triggeringTerms != null) {
-            this.triggeringTerms.forEach(term -> this.streamlinedTerms.add(StringUtils.stripAccents(term)));
-            log.debug(this.streamlinedTerms);
-        }*/
 
         List<NoteContentDTO> noteContentsDTO = this.patientHistoryApiProxy.getFullHistory(patientId);
 
         if (noteContentsDTO == null || this.triggeringTerms.isEmpty()) {
-            return RiskLevel.UNKNOWN;
+            return DiabetesRiskLevel.UNKNOWN;
         }
 
         triggers = countTriggersInNoteContentList(noteContentsDTO);
 
-        riskLevel = calculateRisk(triggers, sex, dob);
+        diabetesRiskLevel = calculateRisk(triggers, sex, dob);
 
-        return riskLevel;
+        return diabetesRiskLevel;
     }
 
     private int countTriggersInNoteContentList(@NotNull List<NoteContentDTO> noteContentsDTO) {
@@ -93,38 +83,38 @@ public class AssessmentService {
         AtomicInteger triggers = new AtomicInteger();
 
         triggeringTerms.forEach(triggeringTerm -> {
-            if (containsIgnoreCase(triggeringTerm, content))    {
+            if (containsIgnoreCase(content, triggeringTerm))    {
                 triggers.getAndIncrement();
             }
         });
         return triggers.get();
     }
 
-    private RiskLevel calculateRisk(int triggers, char sex, LocalDate dob) {
+    private DiabetesRiskLevel calculateRisk(int triggers, char sex, LocalDate dob) {
 
         boolean isMale;
         boolean isYoung = false;
 
         if (triggers < borderlineRiskTriggerThreshold)  {
-            return RiskLevel.NONE;
+            return DiabetesRiskLevel.NONE;
         }
 
         if (triggers >= earlyOnsetOldTriggerThreshold)   {
-            return RiskLevel.EARLY_ONSET;
+            return DiabetesRiskLevel.EARLY_ONSET;
         }
 
         switch (sex)    {
             case 'M' -> isMale = true;
             case 'F' -> isMale = false;
             default -> {
-                return RiskLevel.UNKNOWN;
+                return DiabetesRiskLevel.UNKNOWN;
             }
         }
 
         int age = calculateAge(dob);
 
         if (age < 0) {
-            return RiskLevel.UNKNOWN;
+            return DiabetesRiskLevel.UNKNOWN;
         }
 
         if (age < riskAgeThreshold)    {
@@ -132,30 +122,30 @@ public class AssessmentService {
         }
 
         if (!isMale && isYoung && triggers >= earlyOnsetYoungFemaleTriggerThreshold)    {
-            return RiskLevel.EARLY_ONSET;
+            return DiabetesRiskLevel.EARLY_ONSET;
         }
 
         if (isMale && isYoung && triggers >= earlyOnsetYoungMaleTriggerThreshold)    {
-            return RiskLevel.EARLY_ONSET;
+            return DiabetesRiskLevel.EARLY_ONSET;
         }
 
         if (triggers >= inDangerOldTriggerThreshold)   {
-            return RiskLevel.IN_DANGER;
+            return DiabetesRiskLevel.IN_DANGER;
         }
 
         if (!isMale && isYoung && triggers >= inDangerYoungFemaleTriggerThreshold)    {
-            return RiskLevel.IN_DANGER;
+            return DiabetesRiskLevel.IN_DANGER;
         }
 
         if (isMale && isYoung && triggers >= inDangerYoungMaleTriggerThreshold)    {
-            return RiskLevel.IN_DANGER;
+            return DiabetesRiskLevel.IN_DANGER;
         }
 
         if (!isYoung && triggers >= borderlineRiskTriggerThreshold) {
-            return RiskLevel.BORDERLINE;
+            return DiabetesRiskLevel.BORDERLINE;
         }
 
-        return RiskLevel.UNKNOWN;
+        return DiabetesRiskLevel.UNKNOWN;
     }
 
     private int calculateAge(LocalDate dob) {

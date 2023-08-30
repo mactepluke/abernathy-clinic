@@ -44,10 +44,13 @@
         <input matInput formControlName="address">
       </mat-form-field>
     </div>
+
+    <app-diabetes-assessment [currentPatient]="currentPatient"></app-diabetes-assessment>
+
   </mat-card-content>
   <mat-card-actions class="centered">
     <div class="button-div">
-      <button  mat-raised-button color="primary" [disabled]="form.invalid" (click)="onUpdate()">Update</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onUpdate()">Update</button>
       <button id="reset" mat-raised-button (click)="onReset()">Reset</button>
     </div>
     <div class="button-div">

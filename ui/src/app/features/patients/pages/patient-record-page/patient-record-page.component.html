@@ -1,3 +1,5 @@
-<app-patient-info [currentPatient]="patient"></app-patient-info>
-<app-history-table [currentPatient]="patient"></app-history-table>
+<mat-spinner *ngIf="!patient"></mat-spinner>
+<app-patient-info *ngIf="patient" [currentPatient]="patient"></app-patient-info>
+<app-diabetes-assessment *ngIf="patient" [currentPatient]="patient"></app-diabetes-assessment>
+<app-history-table *ngIf="patient" [currentPatient]="patient"></app-history-table>
 

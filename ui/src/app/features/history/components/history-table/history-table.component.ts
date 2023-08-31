@@ -8,11 +8,12 @@ import {LightNote} from "../../models/LightNote";
 import {Patient} from "../../../patients/models/Patient";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import {DatePipe, TitleCasePipe} from "@angular/common";
+import {DatePipe, NgIf, TitleCasePipe} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog/delete-dialog.component";
+import {DisplayService} from "../../../../general/services/display.service";
 
 @Component({
   selector: 'app-history-table',
@@ -28,10 +29,12 @@ import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog
     DatePipe,
     TitleCasePipe,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    NgIf
   ],
   providers: [
-    HistoryService
+    HistoryService,
+    DisplayService
   ]
 })
 export class HistoryTableComponent implements AfterViewInit {
@@ -49,7 +52,8 @@ export class HistoryTableComponent implements AfterViewInit {
 
   constructor(private historyService: HistoryService,
               private router: Router,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private displayService: DisplayService) {
     this.dataSource = new HistoryTableDataSource();
   }
 
@@ -84,7 +88,16 @@ export class HistoryTableComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.historyService.deleteNote(id)
-            .subscribe(() => window.location.reload());
+            .subscribe({
+              next: () => {
+                console.log('Note successfully deleted');
+                this.displayService.openSnackBar('Note successfully deleted');
+                window.location.reload();
+              },
+              error: (): void => {
+                this.displayService.openSnackBar('Error: could not delete note');
+              }
+            });
       }
     });
   }

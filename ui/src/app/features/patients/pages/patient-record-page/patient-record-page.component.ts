@@ -5,6 +5,8 @@ import {PatientService} from "../../services/patient.service";
 import {PatientInfoComponent} from "../../components/patient-info/patient-info.component";
 import {HistoryTableComponent} from "../../../history/components/history-table/history-table.component";
 import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessment/diabetes-assessment.component";
+import {NgIf} from "@angular/common";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-patient-record-page',
@@ -14,7 +16,9 @@ import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessme
   imports: [
     PatientInfoComponent,
     HistoryTableComponent,
-    DiabetesAssessmentComponent
+    DiabetesAssessmentComponent,
+    NgIf,
+    MatProgressSpinnerModule
   ],
   providers: [
     PatientService

@@ -1,7 +1,7 @@
-import {Component, inject} from '@angular/core';
+import {Component, Inject, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from "@angular/material/button";
-import {MatSnackBarModule, MatSnackBarRef} from "@angular/material/snack-bar";
+import {MAT_SNACK_BAR_DATA, MatSnackBarModule, MatSnackBarRef} from "@angular/material/snack-bar";
 import {MatIconModule} from "@angular/material/icon";
 
 @Component({
@@ -17,5 +17,7 @@ import {MatIconModule} from "@angular/material/icon";
   styleUrls: ['./snack-bar.component.css']
 })
 export class SnackBarComponent {
-  snackBarRef = inject(MatSnackBarRef);
+  snackBarRef: MatSnackBarRef<any> = inject(MatSnackBarRef);
+
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: string) { }
 }

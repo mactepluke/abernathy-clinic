@@ -18,11 +18,11 @@ public class Note {
     @Indexed()
     @NotBlank(message = "Patient id is mandatory")
     private String patientId;
-    @Size(max = 50)
+    @Size(max = 100)
     @NotNull
     private String title = "";
     private LocalDateTime dateTime;
-    @Size(max = 2000)
+    @Size(max = 8000)
     @NotNull
     private String content = "";
 

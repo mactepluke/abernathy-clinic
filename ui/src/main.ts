@@ -23,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'mediscreen-abernathy/patient-note/:id/:patientId/:family/:given',
-    loadComponent: () => import('./app/features/history/note-page/note-page.component').then(module => module.NotePageComponent)
+    loadComponent: () => import('./app/features/history/pages/note-page/note-page.component').then(module => module.NotePageComponent)
   },
   {
     path: '**',

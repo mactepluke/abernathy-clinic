@@ -1,7 +1,7 @@
 export enum DiabetesRiskLevel  {
-  UNKNOWN,
-  NONE,
-  BORDERLINE,
-  IN_DANGER,
-  EARLY_ONSET
+  UNKNOWN = 'grey',
+  NONE = 'green',
+  BORDERLINE = 'yellow',
+  IN_DANGER = 'orange',
+  EARLY_ONSET = 'red'
 }

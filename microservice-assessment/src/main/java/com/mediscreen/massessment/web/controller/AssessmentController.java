@@ -6,6 +6,7 @@ import com.mediscreen.massessment.web.exceptions.CannotHandleAssessmentException
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.time.LocalDate;
 @RequestMapping("/assessment")
 @CrossOrigin(origins = "http://localhost:4200,http://localhost:8082")
 @Validated
+@Scope("request")
 public class AssessmentController {
 
     @Autowired

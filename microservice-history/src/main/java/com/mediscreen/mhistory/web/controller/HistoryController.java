@@ -1,5 +1,7 @@
 package com.mediscreen.mhistory.web.controller;
 
+import com.mediscreen.mhistory.dto.AddNoteDTO;
+import com.mediscreen.mhistory.dto.UpdateNoteDTO;
 import com.mediscreen.mhistory.model.LightNote;
 import com.mediscreen.mhistory.model.Note;
 import com.mediscreen.mhistory.service.HistoryService;
@@ -10,6 +12,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +27,7 @@ import static java.lang.Math.min;
 @RequestMapping("/history")
 @CrossOrigin(origins = "http://localhost:4200")
 @Validated
+@Scope("request")
 public class HistoryController {
 
     @Autowired
@@ -32,18 +36,16 @@ public class HistoryController {
     @PostMapping(value = "/addNote")
     public ResponseEntity<Note> addNote(
             @Valid
-            @RequestParam @NotBlank String patientId,
-            @RequestParam @NotNull String title,
-            @RequestParam @NotNull String content
-    )   {
+            @RequestBody AddNoteDTO noteToAdd
+            )   {
 
         Note note;
-        String shortContent = shortenContent(content);
+        String shortContent = shortenContent(noteToAdd.getContent());
 
         log.info("Add request received with params: patientId={}, title={}, content={}...",
-                patientId, title, shortContent);
+                noteToAdd.getPatientId(), noteToAdd.getTitle(), shortContent);
 
-        note = historyService.add(patientId, title, content);
+        note = historyService.add(noteToAdd.getPatientId(), noteToAdd.getTitle(), noteToAdd.getContent());
 
         if (note == null) throw new CannotHandleNoteException("Cannot add note");
 
@@ -101,22 +103,23 @@ public class HistoryController {
     @PutMapping(value = "/updateNote")
     public ResponseEntity<Note>  updateNote(
             @Valid
-            @RequestParam @NotBlank String id,
-            @RequestParam @NotNull String title,
-            @RequestParam @NotNull String content
+            @RequestBody UpdateNoteDTO updatedNote
     )   {
+
         Note note;
-        String shortContent = shortenContent(content);
+
+        String shortContent = shortenContent(updatedNote.getContent());
 
         log.info("Udpate request received with params: id={}, title={}, content={}",
-                id, title, shortContent);
+                updatedNote.getId(), updatedNote.getTitle(), shortContent);
 
-        note = historyService.update(id, title, content);
+        note = historyService.update(updatedNote.getId(), updatedNote.getTitle(), updatedNote.getContent());
 
         if (note == null) throw new CannotHandleNoteException("Cannot update note");
 
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
+
 
     @DeleteMapping(value = "/deleteNote")
     public HttpStatus deleteNote(@Valid @RequestParam @NotBlank String id)    {

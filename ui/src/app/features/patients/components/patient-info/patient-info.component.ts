@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Patient} from "../../models/Patient";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -18,6 +18,7 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {SnackBarComponent} from "../../../../general/components/snack-bar/snack-bar.component";
 import {HistoryService} from "../../../history/services/history.service";
 import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessment/diabetes-assessment.component";
+import {DisplayService} from "../../../../general/services/display.service";
 
 interface Sex {
   value: string;
@@ -39,13 +40,13 @@ interface Sex {
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatSnackBarModule,
     DiabetesAssessmentComponent
   ],
   providers: [
     PatientService,
     HistoryService,
-    PatientRecordService
+    PatientRecordService,
+    DisplayService
   ],
   templateUrl: './patient-info.component.html',
   styleUrls: ['./patient-info.component.css']
@@ -66,7 +67,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
               private patientRecordService: PatientRecordService,
               private router: Router,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar) {
+              private displayService: DisplayService) {
   }
 
   ngOnInit(): void {
@@ -74,10 +75,21 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.onReset();
+    this.reset();
   }
 
   onReset(): void {
+    this.newPatient = this.form.value;
+    if (this.patientRecordService.equals(this.newPatient, this.currentPatient)) {
+      console.log('No fields changed')
+      this.displayService.openSnackBar('No fields changed');
+    } else {
+      this.reset();
+      this.displayService.openSnackBar('Fields reset to initial values');
+    }
+  }
+
+  reset(): void {
     this.form.setValue({
       family: this.currentPatient.family,
       given: this.currentPatient.given,
@@ -91,22 +103,15 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
   onUpdate(): void {
     this.newPatient = this.form.value;
     if (this.patientRecordService.equals(this.newPatient, this.currentPatient)) {
-      console.log("No fields changed.")
+      console.log('No fields changed')
+      this.displayService.openSnackBar('No fields changed');
     } else {
       this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient).subscribe((patient: Patient): void => {
         this.currentPatient = patient;
-        window.location.reload();
-        this.openSnackBar();
-        console.log("Update successful.")
+        this.displayService.openSnackBar('Update successful');
+        console.log('Update successful')
       });
     }
-  }
-
-  openSnackBar(): void  {
-    this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 3000,
-      data: 'rrr' // TODO try to make something of it
-    });
   }
 
   onDelete(): void {
@@ -115,7 +120,15 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       if (result) {
         this.historyService.deleteAllNotes(this.currentPatient.patientId.toString()).subscribe(
           () => this.patientService.deletePatient(this.currentPatient.family, this.currentPatient.given)
-            .subscribe(() => this.router.navigate(['mediscreen-abernathy/patients'])));
+            .subscribe({
+                next: (patient) =>
+                  this.router.navigate(['mediscreen-abernathy/patients'])
+                    .then(() => this.displayService.openSnackBar(`\'${patient.given} ${patient.family}\' has been deleted!`)),
+                error: () => {
+                  this.displayService.openSnackBar('Error: could not delete patient')
+                }
+              }
+            ));
       }
     });
   }

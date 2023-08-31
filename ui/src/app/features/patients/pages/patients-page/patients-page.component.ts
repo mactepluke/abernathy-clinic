@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {PatientsTableComponent} from "../../components/patients-table/patients-table.component";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
-import {NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
@@ -9,6 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {AddPatientDialogComponent} from "../../components/add-patient-dialog/add-patient-dialog.component";
 import {Patient} from "../../models/Patient";
 import {PatientService} from "../../services/patient.service";
+import {DisplayService} from "../../../../general/services/display.service";
 
 
 @Component({
@@ -21,28 +21,38 @@ import {PatientService} from "../../services/patient.service";
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    NgIf,
     MatDialogModule
   ],
   providers: [
-    PatientService
+    PatientService,
+    DisplayService
   ],
   styleUrls: ['./patients-page.component.css']
 })
 export class PatientsPageComponent {
   patient!: Patient;
 
-  constructor(public dialog: MatDialog, private patientService: PatientService) {}
+  constructor(public dialog: MatDialog,
+              private patientService: PatientService,
+              private displayService: DisplayService) {
+  }
 
-  addPatient() {
+  addPatient(): void {
     const dialogRef = this.dialog.open(AddPatientDialogComponent);
 
     dialogRef.afterClosed().subscribe(patient => {
       this.patient = patient;
-      console.log(this.patient);
-      this.patientService.addPatient(this.patient).subscribe( () => {
-        console.log("Add patient successful.")
-        window.location.reload()}
+
+      this.patientService.addPatient(this.patient).subscribe({
+          next: () => {
+            console.log('Patient added successfully');
+            this.displayService.openSnackBar('Patient added successfully');
+            window.location.reload();
+          },
+          error: (): void => {
+            this.displayService.openSnackBar('Error: could not add patient');
+          }
+        }
       );
     });
   }

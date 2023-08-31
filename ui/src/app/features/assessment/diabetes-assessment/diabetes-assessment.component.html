@@ -1,2 +1,10 @@
-<p><b>MAIN RISKS</b></p>
-<p>- Type 2 diabetes: {{diabetesRiskLevel}}</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Risk of Diseases</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+    • Type 2 Diabetes: <span [ngStyle]="{color: diabetesRiskLevel.toString() | riskColor}"><b>{{diabetesRiskLevel.toString() | riskLevel}}</b></span>
+    </p>
+  </mat-card-content>
+</mat-card>

@@ -18,12 +18,26 @@ export class HistoryService {
     return this.http.get<Note>(`${environment.mhistoryUrl}/history/getNote?id=${id}`);
   }
 
-  addNote(note: Note): Observable<Note> {
+  /*addNote(note: Note): Observable<Note> {
     return this.http.post<Note>(`${environment.mhistoryUrl}/history/addNote?patientId=${note.patientId}&title=${note.title}&content=${note.content}`, '');
+  }*/
+
+  addNote(note: Note): Observable<Note> {
+    return this.http.post<Note>(`${environment.mhistoryUrl}/history/addNote`,
+      {
+        "patientId": `${note.patientId}`,
+        "title": `${note.title}`,
+        "content": `${note.content}`
+      });
   }
 
   updateNote(note: Note): Observable<Note> {
-    return this.http.put<Note>(`${environment.mhistoryUrl}/history/updateNote?id=${note.id}&title=${note.title}&content=${note.content}`, '');
+    return this.http.put<Note>(`${environment.mhistoryUrl}/history/updateNote`,
+      {
+        "id": `${note.id}`,
+        "title": `${note.title}`,
+        "content": `${note.content}`
+      });
   }
 
   deleteNote(id: string): Observable<void> {

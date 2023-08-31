@@ -145,7 +145,7 @@ public class AssessmentService {
             return DiabetesRiskLevel.BORDERLINE;
         }
 
-        return DiabetesRiskLevel.UNKNOWN;
+        return DiabetesRiskLevel.NONE;
     }
 
     private int calculateAge(LocalDate dob) {

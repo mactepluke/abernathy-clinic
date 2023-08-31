@@ -1,4 +1,5 @@
-#cards {
-  flex-direction: column;
-  justify-content: center;
+mat-spinner {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
 }

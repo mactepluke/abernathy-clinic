@@ -11,19 +11,15 @@ export class HistoryService {
   constructor(private http: HttpClient) { }
 
   findHistory(patientId: number): Observable<LightNote[]> {
-    return this.http.get<LightNote[]>(`${environment.mhistoryUrl}/history/getHistory?patientId=${patientId}`);
+    return this.http.get<LightNote[]>(`${environment.gateway}/history/getHistory?patientId=${patientId}`);
   }
 
   findNote(id: string): Observable<Note> {
-    return this.http.get<Note>(`${environment.mhistoryUrl}/history/getNote?id=${id}`);
+    return this.http.get<Note>(`${environment.gateway}/history/getNote?id=${id}`);
   }
 
-  /*addNote(note: Note): Observable<Note> {
-    return this.http.post<Note>(`${environment.mhistoryUrl}/history/addNote?patientId=${note.patientId}&title=${note.title}&content=${note.content}`, '');
-  }*/
-
   addNote(note: Note): Observable<Note> {
-    return this.http.post<Note>(`${environment.mhistoryUrl}/history/addNote`,
+    return this.http.post<Note>(`${environment.gateway}/history/addNote`,
       {
         "patientId": `${note.patientId}`,
         "title": `${note.title}`,
@@ -32,7 +28,7 @@ export class HistoryService {
   }
 
   updateNote(note: Note): Observable<Note> {
-    return this.http.put<Note>(`${environment.mhistoryUrl}/history/updateNote`,
+    return this.http.put<Note>(`${environment.gateway}/history/updateNote`,
       {
         "id": `${note.id}`,
         "title": `${note.title}`,
@@ -41,11 +37,11 @@ export class HistoryService {
   }
 
   deleteNote(id: string): Observable<void> {
-    return this.http.delete<void>(`${environment.mhistoryUrl}/history/deleteNote?id=${id}`);
+    return this.http.delete<void>(`${environment.gateway}/history/deleteNote?id=${id}`);
   }
 
   deleteAllNotes(patientId: string): Observable<void> {
-    return this.http.delete<void>(`${environment.mhistoryUrl}/history/deleteAllNotes?patientId=${patientId}`);
+    return this.http.delete<void>(`${environment.gateway}/history/deleteAllNotes?patientId=${patientId}`);
   }
 
   equals(note1: Note, note2: Note): boolean {

@@ -31,6 +31,7 @@ ui/.vscode/tasks.json
 .history/*
 
 # Miscellaneous
+.angular
 /.angular/cache
 .sass-cache/
 /connect.lock
@@ -42,3 +43,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/ui/node_modules/
+/ui/.vscode/
+/ui/dist/
+/out/
+/logs/
+/.idea/

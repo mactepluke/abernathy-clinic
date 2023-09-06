@@ -11,7 +11,7 @@ export class AssessmentService {
   constructor(private http: HttpClient) { }
 
   assessDiabetesRisk(patient: Patient): Observable<DiabetesRiskLevel> {
-    return this.http.get<DiabetesRiskLevel>(`${environment.massessmentUrl}/assessment/assessDiabetesRisk?patientId=${patient.patientId}&sex=${patient.sex}&dob=${patient.dob}`);
+    return this.http.get<DiabetesRiskLevel>(`${environment.gateway}/assessment/assessDiabetesRisk?patientId=${patient.patientId}&sex=${patient.sex}&dob=${patient.dob}`);
   }
 
 }

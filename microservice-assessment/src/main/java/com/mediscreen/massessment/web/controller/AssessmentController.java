@@ -25,7 +25,6 @@ import java.time.LocalDate;
 @Log4j2
 @RestController
 @RequestMapping("/assessment")
-@CrossOrigin(origins = "http://localhost:4200,http://localhost:8082")
 @Validated
 @Scope("request")
 public class AssessmentController {

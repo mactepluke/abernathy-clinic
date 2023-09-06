@@ -12,9 +12,9 @@ export class RiskColorPipe implements PipeTransform {
 
     switch (riskLevel)  {
       case 'NONE': return 'green';
-      case 'BORDERLINE': return 'goldenrod';
-      case 'IN_DANGER': return 'orange';
-      case 'EARLY_ONSET': return 'red';
+      case 'BORDERLINE': return 'gold';
+      case 'IN_DANGER': return 'darkorange';
+      case 'EARLY_ONSET': return 'crimson';
       default: return 'black';
     }
   }

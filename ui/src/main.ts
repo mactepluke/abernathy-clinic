@@ -2,7 +2,7 @@ import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {provideRouter, Routes} from "@angular/router";
+import {provideRouter, Routes, withHashLocation} from "@angular/router";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 export const routes: Routes = [
@@ -33,6 +33,6 @@ export const routes: Routes = [
 
 bootstrapApplication(AppComponent, {
     providers: [importProvidersFrom(BrowserModule, BrowserAnimationsModule, HttpClient, HttpClientModule),
-    provideRouter(routes)]
+    provideRouter(routes, withHashLocation())]
 })
   .catch(err => console.error(err));

@@ -9,7 +9,6 @@ import com.mediscreen.mhistory.web.exceptions.CannotHandleNoteException;
 import com.mediscreen.mhistory.web.exceptions.NoteNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -25,7 +24,6 @@ import static java.lang.Math.min;
 @Log4j2
 @RestController
 @RequestMapping("/history")
-@CrossOrigin(origins = "http://localhost:4200")
 @Validated
 @Scope("request")
 public class HistoryController {

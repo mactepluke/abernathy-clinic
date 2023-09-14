@@ -8,7 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
-import {DisplayService} from "../../../../general/services/display.service";
+import {DisplayService} from "../../../../shared/services/display.service";
 
 @Component({
   selector: 'app-note-page',

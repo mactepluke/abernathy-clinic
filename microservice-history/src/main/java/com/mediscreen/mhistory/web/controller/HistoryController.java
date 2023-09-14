@@ -51,7 +51,7 @@ public class HistoryController {
     }
 
     @GetMapping(value = "/getNote")
-    public ResponseEntity<Note> getNote(@Valid @RequestParam @NotBlank String id)   {
+    public ResponseEntity<Note> getNote(@RequestParam @NotBlank String id)   {
 
         Note note;
 
@@ -65,7 +65,7 @@ public class HistoryController {
 
 
     @GetMapping(value = "/getHistory")
-    public ResponseEntity<List<LightNote>> getAll(@Valid @RequestParam @NotBlank String patientId)   {
+    public ResponseEntity<List<LightNote>> getAll(@RequestParam @NotBlank String patientId)   {
 
         List<LightNote> history;
 
@@ -82,7 +82,7 @@ public class HistoryController {
     }
 
     @GetMapping(value = "/getFullHistory")
-    public ResponseEntity<List<Note>> getAllWithContent(@Valid @RequestParam @NotBlank String patientId)   {
+    public ResponseEntity<List<Note>> getAllWithContent(@RequestParam @NotBlank String patientId)   {
 
         List<Note> history;
 
@@ -120,7 +120,7 @@ public class HistoryController {
 
 
     @DeleteMapping(value = "/deleteNote")
-    public HttpStatus deleteNote(@Valid @RequestParam @NotBlank String id)    {
+    public HttpStatus deleteNote(@RequestParam @NotBlank String id)    {
 
         log.info("Delete request received with params: id={}", id);
 
@@ -130,7 +130,7 @@ public class HistoryController {
     }
 
     @DeleteMapping(value = "/deleteAllNotes")
-    public HttpStatus deleteAllNotes(@Valid @RequestParam @NotBlank String patientId)    {
+    public HttpStatus deleteAllNotes(@RequestParam @NotBlank String patientId)    {
 
         log.info("Delete request received with params: patientId={}", patientId);
 

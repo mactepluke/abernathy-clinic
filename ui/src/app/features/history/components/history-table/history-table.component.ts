@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog/delete-dialog.component";
-import {DisplayService} from "../../../../general/services/display.service";
+import {DisplayService} from "../../../../shared/services/display.service";
 
 @Component({
   selector: 'app-history-table',

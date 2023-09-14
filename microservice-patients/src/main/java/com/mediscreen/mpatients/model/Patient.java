@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -18,23 +17,20 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer patientId;
     @Column(length = 50)
-    @Size(max = 50)
     @NotBlank(message = "Family name is mandatory")
     private String family;
     @Column(length = 50)
-    @Size(max = 50)
     @NotBlank(message = "Given name is mandatory")
     private String given;
     @NotNull
     private LocalDate dob;
     private boolean sex;
     @Column(length = 250)
-    @Size(max = 250)
     private String address;
     @Column(length = 20)
-    @Size(max = 20)
     private String phone;
 
     public Patient() {

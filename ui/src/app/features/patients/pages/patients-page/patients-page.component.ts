@@ -8,7 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {AddPatientDialogComponent} from "../../components/add-patient-dialog/add-patient-dialog.component";
 import {Patient} from "../../models/Patient";
 import {PatientService} from "../../services/patient.service";
-import {DisplayService} from "../../../../general/services/display.service";
+import {DisplayService} from "../../../../shared/services/display.service";
 
 
 @Component({

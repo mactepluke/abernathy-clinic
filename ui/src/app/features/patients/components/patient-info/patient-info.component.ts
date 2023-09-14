@@ -15,10 +15,10 @@ import {PatientRecordService} from "../../services/patient-record.service";
 import {Router} from "@angular/router";
 import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog/delete-dialog.component";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import {SnackBarComponent} from "../../../../general/components/snack-bar/snack-bar.component";
+import {SnackBarComponent} from "../../../../shared/components/snack-bar/snack-bar.component";
 import {HistoryService} from "../../../history/services/history.service";
 import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessment/diabetes-assessment.component";
-import {DisplayService} from "../../../../general/services/display.service";
+import {DisplayService} from "../../../../shared/services/display.service";
 
 interface Sex {
   value: string;
@@ -106,10 +106,13 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       console.log('No fields changed')
       this.displayService.openSnackBar('No fields changed');
     } else {
-      this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient).subscribe((patient: Patient): void => {
-        this.currentPatient = patient;
-        this.displayService.openSnackBar('Update successful');
-        console.log('Update successful')
+      this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient)
+        .subscribe({
+        next: (patient) => {
+          this.currentPatient = patient;
+          this.displayService.openSnackBar(`Patient\'${patient.family}\' has been created!`);
+        },
+        error: () => this.displayService.openSnackBar(`Could not create patient with family name: \'${this.currentPatient.family}\'`)
       });
     }
   }
@@ -124,9 +127,8 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
                 next: (patient) =>
                   this.router.navigate(['mediscreen-abernathy/patients'])
                     .then(() => this.displayService.openSnackBar(`\'${patient.given} ${patient.family}\' has been deleted!`)),
-                error: () => {
+                error: () =>
                   this.displayService.openSnackBar('Error: could not delete patient')
-                }
               }
             ));
       }

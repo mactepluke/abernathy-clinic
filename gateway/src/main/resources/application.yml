@@ -34,3 +34,4 @@ spring:
           uri: ${MASSESSMENT_URI}
           predicates:
             - Path=/assessment/*
+

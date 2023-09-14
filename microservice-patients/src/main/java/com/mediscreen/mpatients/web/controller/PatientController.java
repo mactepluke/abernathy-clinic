@@ -7,6 +7,7 @@ import com.mediscreen.mpatients.web.exceptions.PatientNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -37,13 +38,12 @@ public class PatientController {
 
     @PostMapping(value = "/add")
     public ResponseEntity<Patient>  add(
-            @Valid
-            @RequestParam @NotBlank String family,
-            @RequestParam @NotBlank String given,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String family,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String given,
             @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dob,
             @RequestParam char sex,
-            @RequestParam(required = false, defaultValue = "") String address,
-            @RequestParam(required = false, defaultValue = "") String phone
+            @RequestParam(required = false, defaultValue = "") @Size(max = 250) String address,
+            @RequestParam(required = false, defaultValue = "") @Size(max = 20) String phone
     )   {
 
         Patient patient;
@@ -60,9 +60,8 @@ public class PatientController {
 
     @GetMapping(value = "/get")
     public ResponseEntity<Patient> get(
-            @Valid
-            @RequestParam @NotBlank String family,
-            @RequestParam @NotBlank String given
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String family,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String given
     )   {
 
         Patient patient;
@@ -91,15 +90,14 @@ public class PatientController {
 
     @PutMapping(value = "/update")
     public ResponseEntity<Patient>  update(
-            @Valid
-            @RequestParam @NotBlank String family,
-            @RequestParam @NotBlank String given,
-            @RequestParam @NotBlank String newFamily,
-            @RequestParam @NotBlank String newGiven,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String family,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String given,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String newFamily,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String newGiven,
             @RequestParam @NotNull @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate newDob,
             @RequestParam char newSex,
-            @RequestParam(required = false, defaultValue = "") String newAddress,
-            @RequestParam(required = false, defaultValue = "") String newPhone
+            @RequestParam(required = false, defaultValue = "") @Size(max = 250) String newAddress,
+            @RequestParam(required = false, defaultValue = "") @Size(max = 50) String newPhone
     )   {
         Patient patient;
 
@@ -115,9 +113,8 @@ public class PatientController {
 
     @DeleteMapping(value = "/delete")
     public ResponseEntity<Patient> delete(
-            @Valid
-            @RequestParam @NotBlank String family,
-            @RequestParam @NotBlank String given
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String family,
+            @RequestParam @NotBlank @Size(min = 3, max = 50) String given
     )    {
 
         log.info("Delete request received with params: family={}, given={}", family, given);

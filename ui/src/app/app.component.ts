@@ -10,13 +10,15 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
     standalone: true,
-  imports: [NgSwitch,
+  imports: [
+    NgSwitch,
     NgSwitchDefault,
     NgSwitchCase,
     NavigationComponent,
     RouterOutlet,
     MatNativeDateModule,
-    MatSnackBarModule],
+    MatSnackBarModule
+  ],
   providers: [
     DatePipe
   ]

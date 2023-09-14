@@ -14,7 +14,7 @@ export class PatientRecordService {
       given: [null, [Validators.required, Validators.pattern("^[A-Za-zÀ-ÿ- ]{3,50}$")]],
       dob: [null, Validators.required],
       sex: [null, Validators.required],
-      address: [null, Validators.pattern("^[A-Za-zÀ-ÿ0-9-, ]{10,250}$")],
+      address: [null, Validators.pattern("^[A-Za-zÀ-ÿ0-9-, ]{6,250}$")],
       phone: [null, Validators.pattern("^[0-9-. ]{8,20}$")]
     });
   }

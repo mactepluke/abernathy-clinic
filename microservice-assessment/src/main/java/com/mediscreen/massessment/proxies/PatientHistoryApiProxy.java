@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "history", url = "${HISTORY_URL}")
+@FeignClient(name = "history", url = "${MHISTORY_URI}")
 public interface PatientHistoryApiProxy {
 
-    @GetMapping("/getFullHistory")
+    @GetMapping("/history/getFullHistory")
     List<NoteContentDTO> getFullHistory(@Valid @RequestParam @NotBlank String patientId);
 }

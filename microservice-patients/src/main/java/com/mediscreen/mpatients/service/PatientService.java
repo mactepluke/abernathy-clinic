@@ -22,7 +22,7 @@ public class PatientService {
     public Patient add(String family, String given, LocalDate dob, char sex, String address, String phone) {
 
         if (find(family, given) != null)    {
-            log.warn("Patient already exists with family: '{}' and given: '{}'", family, given);
+            log.error("Patient already exists with family: '{}' and given: '{}'", family, given);
             return null;
         }
 

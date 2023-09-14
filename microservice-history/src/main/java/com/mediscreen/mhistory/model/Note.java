@@ -1,6 +1,5 @@
 package com.mediscreen.mhistory.model;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.ToString;
@@ -16,14 +15,11 @@ public class Note {
     @Id
     private String id;
     @Indexed()
-    @NotBlank(message = "Patient id is mandatory")
     private String patientId;
     @Size(max = 100)
-    @NotNull
     private String title = "";
     private LocalDateTime dateTime;
     @Size(max = 8000)
-    @NotNull
     private String content = "";
 
     public Note()   {

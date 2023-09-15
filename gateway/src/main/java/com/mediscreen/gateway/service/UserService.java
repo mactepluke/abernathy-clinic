@@ -4,10 +4,14 @@ import com.mediscreen.gateway.model.User;
 import com.mediscreen.gateway.repository.UserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Log4j2
 @Service
@@ -38,7 +42,18 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
+    @Transactional(readOnly = true)
+    public Mono<User> findByUsername(String username) {
+        return Mono.justOrEmpty(userRepository.findByUsername(username));
+    }
+
+    @Transactional(readOnly = true)
     public boolean passwordIsValid(User user, String password) {
         return passwordEncoder.matches(password, user.getPassword());
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserDetails> findAllByUsername(String username)   {
+        return userRepository.findAllByUsername(username);
     }
 }

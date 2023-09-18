@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Patient} from "../../models/Patient";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -14,8 +14,6 @@ import {PatientService} from "../../services/patient.service";
 import {PatientRecordService} from "../../services/patient-record.service";
 import {Router} from "@angular/router";
 import {DeleteDialogComponent} from "../../../../shared/components/delete-dialog/delete-dialog.component";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
-import {SnackBarComponent} from "../../../../shared/components/snack-bar/snack-bar.component";
 import {HistoryService} from "../../../history/services/history.service";
 import {DiabetesAssessmentComponent} from "../../../assessment/diabetes-assessment/diabetes-assessment.component";
 import {DisplayService} from "../../../../shared/services/display.service";
@@ -110,9 +108,9 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
         .subscribe({
         next: (patient) => {
           this.currentPatient = patient;
-          this.displayService.openSnackBar(`Patient\'${patient.family}\' has been created!`);
+          this.displayService.openSnackBar(`Patient\'${patient.family}\' has been updated!`);
         },
-        error: () => this.displayService.openSnackBar(`Could not create patient with family name: \'${this.currentPatient.family}\'`)
+        error: () => this.displayService.openSnackBar(`Could not update patient with family name: \'${this.currentPatient.family}\'`)
       });
     }
   }

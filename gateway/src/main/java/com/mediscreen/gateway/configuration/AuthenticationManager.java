@@ -11,7 +11,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -33,7 +32,7 @@ public class AuthenticationManager implements ReactiveAuthenticationManager {
                     return new UsernamePasswordAuthenticationToken(
                             username,
                             null,
-                            rolesMap.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
+                            rolesMap.stream().map(SimpleGrantedAuthority::new).toList()
                     );
                 });
     }

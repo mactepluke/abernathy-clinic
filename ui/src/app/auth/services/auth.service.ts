@@ -1,37 +1,70 @@
-import { Injectable } from '@angular/core';
-import {User} from '../User';
-import {Security} from "../security/security";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable, tap} from "rxjs";
+import {environment} from "../../../environments/environment";
+import {User} from "../models/User";
+import {AuthResponse} from "../models/AuthResponse";
+import {shareReplay} from "rxjs/operators";
+import {JwtHelperService} from "@auth0/angular-jwt";
+import * as moment from "moment";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
-  private _loggedIn = false;
 
-  login(user: User): void {
-    Security.username = user.username;
-    Security.password = user.password;
-    this._loggedIn = true;
+  constructor(
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService
+  ) {}
+
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.gateway}/user/create`,
+      {
+        "username": `${user.username}`,
+        "password": `${user.password}`
+      });
   }
 
-  logout(): void {
-    let loggedIn = false;
+  login(user: User): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${environment.gateway}/user/login`,
+      {
+        "username": `${user.username}`,
+        "password": `${user.password}`
+      }).pipe(
+      tap(res => this.setSession(res)),
+      shareReplay()
+    );
   }
 
-  get currentUser(): User {
-    return {username : Security.username, password: Security.password};
+  private setSession(authResponse: AuthResponse) {
+
+    const token : string = authResponse.token;
+    const decodedToken = this.jwtHelper.decodeToken(token);
+
+    localStorage.setItem('jwtToken', token);
+    localStorage.setItem('username', decodedToken.sub)
+    localStorage.setItem('expires_at', JSON.stringify(decodedToken.exp));
   }
 
-  set currentUser(user: User) {
-    Security.username = user.username;
-    Security.password = user.password;
+  logout() : void {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('expires_at');
+    localStorage.removeItem('username');
   }
 
-  get loggedIn(): boolean {
-    return this._loggedIn;
+  public isLoggedIn() : boolean {
+    return moment().isBefore(this.getExpiration());
   }
 
-  set loggedIn(value: boolean) {
-    this._loggedIn = value;
+  getExpiration() : moment.Moment {
+    const expiration: string | null = localStorage.getItem('expires_at');
+    const expiresAt = expiration === null ? 0 : JSON.parse(expiration);
+    return moment(expiresAt * 1000);
   }
+
+  getUsername(): string {
+    let username = localStorage.getItem('username');
+    return username === null ? '' : username;
+  }
+
+
 }

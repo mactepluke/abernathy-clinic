@@ -1,25 +1,34 @@
 import {inject} from '@angular/core';
 import {
   HttpRequest,
-  HttpHandlerFn
+  HttpHandlerFn, HttpHeaders, HttpErrorResponse
 } from '@angular/common/http';
-import {AuthService} from "../services/auth.service";
-import {Security} from "../security/security";
+import {tap} from "rxjs";
+import {Router} from "@angular/router";
 
 export function AuthInterceptor(req: HttpRequest<any>, next: HttpHandlerFn) {
 
-  if (req.headers.has('Permitted')) {
-    return next(req);
+  const router = inject(Router);
+
+  let httpHeaders = new HttpHeaders();
+
+  let jwtToken = localStorage.getItem('jwtToken');
+  if (jwtToken) {
+    httpHeaders = httpHeaders.append('Authorization', `Bearer ${jwtToken}`);
   }
 
-  const authService = inject(AuthService);
-
-  const credentials = btoa(authService.currentUser.username + ':' + authService.currentUser.password);
-
   const modifiedReq = req.clone({
-    headers: req.headers
-      .set('Authorization', `Basic ${credentials}`)
+    headers: httpHeaders
   });
-  return next(modifiedReq);
+
+  return next(modifiedReq).pipe(tap(
+    (err: any) => {
+      if (err instanceof HttpErrorResponse) {
+        if (err.status !== 401) {
+          return;
+        }
+        router.navigate(['mediscreen-abernathy/login']);
+      }
+    }));
 }
 

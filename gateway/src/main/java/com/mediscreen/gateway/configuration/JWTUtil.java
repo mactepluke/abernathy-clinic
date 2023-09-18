@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -48,7 +49,7 @@ public class JWTUtil {
 
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("role", Role.ROLE_USER);
+        claims.put("role", List.of(Role.ROLE_USER));
         return doGenerateToken(claims, user.getUsername());
     }
 

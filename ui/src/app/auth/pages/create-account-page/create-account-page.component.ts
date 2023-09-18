@@ -14,12 +14,11 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {Router, RouterLink, RouterLinkActive} from "@angular/router";
+import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
-import {User} from "../../User";
+import {User} from "../../models/User";
 import {DisplayService} from "../../../shared/services/display.service";
-import {Patient} from "../../../features/patients/models/Patient";
-import {UserService} from "../../services/user.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-create-account-page',
@@ -32,13 +31,11 @@ import {UserService} from "../../services/user.service";
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    RouterLink,
-    RouterLinkActive,
     MatIconModule
   ],
   providers: [
     DisplayService,
-    UserService
+    AuthService
   ],
   templateUrl: './create-account-page.component.html',
   styleUrls: ['./create-account-page.component.css']
@@ -50,7 +47,7 @@ export class CreateAccountPageComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private displayService: DisplayService,
-              private userService: UserService,
+              private authService: AuthService,
               private router: Router) {
   }
 
@@ -77,10 +74,10 @@ export class CreateAccountPageComponent implements OnInit {
   onCreate() {
     this.newUser = this.form.value;
 
-    this.userService.createUser(this.newUser)
+    this.authService.createUser(this.newUser)
       .subscribe({
           next: (user) =>
-            this.router.navigate(['mediscreen-abernathy/login'])
+            this.router.navigate(['mediscreen-abernathy/dashboard'])
               .then(() => this.displayService.openSnackBar(`User \'${user.username}\' has been created!`)),
           error: () => this.displayService.openSnackBar(`Could not create user with username: \'${this.newUser.username}\'`)
         }
@@ -88,4 +85,8 @@ export class CreateAccountPageComponent implements OnInit {
   }
 
 
+  onLoginWithAccount() {
+    this.authService.logout();
+    this.router.navigate(['mediscreen-abernathy/dashboard']);
+  }
 }

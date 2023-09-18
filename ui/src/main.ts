@@ -1,4 +1,4 @@
-import {importProvidersFrom} from '@angular/core';
+import {importProvidersFrom, inject} from '@angular/core';
 import {AppComponent} from './app/app.component';
 import {BrowserModule, bootstrapApplication} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -8,7 +8,9 @@ import {
   HttpClientModule,
   provideHttpClient, withInterceptors,
 } from "@angular/common/http";
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {AuthInterceptor} from "./app/auth/interceptors/auth.interceptor";
+import {AuthService} from "./app/auth/services/auth.service";
 
 export const routes: Routes = [
   {
@@ -20,6 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'mediscreen-abernathy/patients',
+    canActivate: [() => inject(AuthService).isLoggedIn()],
     loadComponent: () => import('./app/features/patients/pages/patients-page/patients-page.component').then(module => module.PatientsPageComponent)
   },
   {
@@ -27,8 +30,8 @@ export const routes: Routes = [
     loadComponent: () => import('./app/general/pages/contact-page/contact-page.component').then(module => module.ContactPageComponent)
   },
   {
-    path: 'mediscreen-abernathy/login',
-    loadComponent: () => import('./app/auth/pages/login-page/login-page.component').then(module => module.LoginPageComponent)
+    path: 'mediscreen-abernathy/dashboard',
+    loadComponent: () => import('./app/auth/pages/dashboard-page/dashboard-page.component').then(module => module.DashboardPageComponent)
   },
   {
     path: 'mediscreen-abernathy/create-account',
@@ -54,7 +57,10 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withHashLocation()),
     provideHttpClient(
       withInterceptors([AuthInterceptor]),
-    )
+    ),
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    JwtHelperService,
+    AuthService
   ]
 })
   .catch(err => console.error(err));

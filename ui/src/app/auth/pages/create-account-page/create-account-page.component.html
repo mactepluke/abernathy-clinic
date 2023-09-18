@@ -30,6 +30,6 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onCreate()">Create</button>
-    <button routerLink="../login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true }" id="login" mat-raised-button >Log in with an existing account</button>
+    <button mat-raised-button id="login" (click)="onLoginWithAccount()">Log in with an existing account</button>
   </mat-card-actions>
 </mat-card>

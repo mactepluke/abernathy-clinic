@@ -1,1 +1,17 @@
+com/mediscreen/gateway/configuration/WebSecurityConfig.class
+com/mediscreen/gateway/repository/UserRepository.class
+com/mediscreen/gateway/web/exceptions/UserNotFoundException.class
+com/mediscreen/gateway/configuration/JWTUtil.class
+com/mediscreen/gateway/configuration/SecurityContextRepository.class
+com/mediscreen/gateway/configuration/AuthenticationManager.class
+com/mediscreen/gateway/model/Message.class
+com/mediscreen/gateway/model/AuthRequest.class
+com/mediscreen/gateway/model/User.class
+com/mediscreen/gateway/model/AuthResponse.class
+com/mediscreen/gateway/web/controller/UserController.class
+com/mediscreen/gateway/web/exceptions/CannotHandleUserException.class
+com/mediscreen/gateway/model/Role.class
 com/mediscreen/gateway/GatewayApplication.class
+com/mediscreen/gateway/web/exceptions/InvalidCredentialsException.class
+com/mediscreen/gateway/service/UserService.class
+com/mediscreen/gateway/service/DefaultUserService.class

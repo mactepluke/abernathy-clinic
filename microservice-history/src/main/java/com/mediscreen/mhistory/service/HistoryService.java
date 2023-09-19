@@ -2,79 +2,76 @@ package com.mediscreen.mhistory.service;
 
 import com.mediscreen.mhistory.model.LightNote;
 import com.mediscreen.mhistory.model.Note;
-import com.mediscreen.mhistory.repository.HistoryRepository;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Log4j2
-@Service
-public class HistoryService {
-
-    @Autowired
-    HistoryRepository historyRepository;
-
+public interface HistoryService {
+    /**
+     * This persists a note in the NoSql database
+     * @param patientId the id of the patient about whom the note is
+     * @param title the title of the note
+     * @param content the content of the note
+     * @return the Note object that has been persisted
+     */
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public Note add(String patientId,
-                    String title,
-                    String content) {
+    Note add(String patientId,
+             String title,
+             String content);
 
-        Note note = new Note(
-                patientId,
-                title,
-                LocalDateTime.now(),
-                content
-        );
-        return historyRepository.insert(note);
-    }
-
+    /**
+     * This finds all notes in a list of simple 'LightNote' objects in the database
+     * that do not contain the note 'content', but only their id, title and update/creation date.
+     * This can be used to lazy load the notes when they must be used without their content,
+     * for example for display as a list in a table
+     * @param patientId the id of the patient whose related note must be found
+     * @return the list of 'LightNote' objects
+     */
     @Transactional(readOnly = true)
-    public List<LightNote> findAllNotes(String patientId) {
-        return historyRepository.findByPatientIdOrderByDateTimeDesc(patientId);
-    }
+    List<LightNote> findAllNotes(String patientId);
 
+    /**
+     * This finds all notes in full 'Note' objects in the database that include all the fields related to a note,
+     * including its content.
+     * @param patientId the id of the patient whose related note must be found
+     * @return the list of 'Note' objects
+     */
     @Transactional(readOnly = true)
-    public List<Note> findAllNotesWithContent(String patientId) {
-        return historyRepository.findByPatientId(patientId);
-    }
+    List<Note> findAllNotesWithContent(String patientId);
 
+    /**
+     * This finds a note by its unique id in the database
+     * @param id the id of the note
+     * @return the 'Note' object found
+     */
     @Transactional(readOnly = true)
-    public Note findById(String id) {
-        return historyRepository.findById(id).orElse(null);
-    }
+    Note findById(String id);
 
+    /**
+     * This updates a note of the corresponding id in the database with a new title and a new content
+     * @param id the id of the note to update
+     * @param title the new title
+     * @param content the new content
+     * @return the updated 'Note' object that has been persisted
+     */
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public Note update(String id,
-                       String title,
-                       String content) {
+    Note update(String id,
+                String title,
+                String content);
 
-        Note note = findById(id);
-
-        if (note != null) {
-            note.setTitle(title);
-            note.setContent(content);
-            note.setDateTime(LocalDateTime.now());
-
-            note = historyRepository.save(note);
-        } else {
-            log.warn("Note doest not exist with id: {}", id);
-        }
-        return note;
-    }
-
+    /**
+     * This deletes a single note in the database
+     * @param id the id of the note to delete
+     */
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void delete(String id) {
-        historyRepository.deleteById(id);
-    }
+    void delete(String id);
 
+    /**
+     * This deletes all notes related to a single patient in the database.
+     * It is used upon the deletion of a patient so 'orphan notes' are removed.
+     * @param patientId the id of the patient whose notes must be deleted
+     */
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void deleteAll(String patientId) {
-        historyRepository.deleteAllByPatientId(patientId);
-    }
-
+    void deleteAll(String patientId);
 }

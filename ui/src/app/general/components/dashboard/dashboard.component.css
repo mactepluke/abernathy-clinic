@@ -1,0 +1,15 @@
+.cardFieldRows {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+#logout {
+  margin-top: 100px;
+}
+
+p {
+  font-size: medium;
+  margin-top: 1%;
+  margin-left: 1%;
+}

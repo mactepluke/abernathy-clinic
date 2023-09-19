@@ -6,7 +6,8 @@ import {User} from "../models/User";
 import {AuthResponse} from "../models/AuthResponse";
 import {shareReplay} from "rxjs/operators";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import * as moment from "moment";
+// @ts-ignore
+import moment from 'moment';
 
 @Injectable()
 export class AuthService {

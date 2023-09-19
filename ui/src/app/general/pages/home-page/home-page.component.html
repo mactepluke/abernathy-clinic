@@ -1,4 +1,14 @@
-<p><b>Welcome to the patients records of Abernathy's clinic !</b></p>
-<p>This records are accessible to all authorized medical professionals of the clinic, please be careful with the data.</p>
-<p>This web application is powered by Mediscreen™.</p>
-<p><i>Respect and enjoy the peace.</i></p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Welcome!</mat-card-title>
+    <mat-card-subtitle>This web application is powered by Mediscreen™.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>The patient list is only accessible to registered staff members.</p>
+    <p>If you are not a registered user yet, please go to the 'Dashboard' and create a new account, then login to access the data.</p>
+    <p>This is a DEMO application: no restrictions apply regarding account creation.</p>
+  </mat-card-content>
+  <mat-card-actions id="actions">
+    <button mat-raised-button color="primary" routerLink="mediscreen-abernathy/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true }">Go to dashboard</button>
+  </mat-card-actions>
+</mat-card>

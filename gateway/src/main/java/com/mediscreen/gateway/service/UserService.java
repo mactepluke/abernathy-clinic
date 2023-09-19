@@ -1,59 +1,36 @@
 package com.mediscreen.gateway.service;
 
 import com.mediscreen.gateway.model.User;
-import com.mediscreen.gateway.repository.UserRepository;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
+public interface UserService {
 
-@Log4j2
-@Service
-public class UserService {
-
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
+    /**
+     * Creates a new user and persists it in the database
+     * @param username the name of the user
+     * @param password the raw password chosen by the user
+     * @return the User object that has been persisted
+     */
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public User create(String username, String password) {
+    User create(String username, String password);
 
-        if (find(username) != null) {
-            log.error("User already exists with username: {}", username);
-            return null;
-        }
-
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-
-        return userRepository.save(user);
-    }
-
+    /**
+     * Finds a user in the database
+     * @param username the name of the user to look for
+     * @return the User object that has been found
+     */
     @Transactional(readOnly = true)
-    public User find(String username)   {
-        return userRepository.findByUsername(username);
-    }
+    User find(String username);
 
+    /**
+     * Finds a user in the database and returns it in the form of a Mono<User> object
+     * (a type common in 'reactive' programming) which is used by the Spring Security
+     * to manage authentication
+     * @param username the name of the user to authenticate
+     * @return an object that can 'emit' the proper User object once it is available
+     */
     @Transactional(readOnly = true)
-    public Mono<User> findByUsername(String username) {
-        return Mono.justOrEmpty(userRepository.findByUsername(username));
-    }
-
-    @Transactional(readOnly = true)
-    public boolean passwordIsValid(User user, String password) {
-        return passwordEncoder.matches(password, user.getPassword());
-    }
-
-    @Transactional(readOnly = true)
-    public List<UserDetails> findAllByUsername(String username)   {
-        return userRepository.findAllByUsername(username);
-    }
+    Mono<User> findByUsername(String username);
 }

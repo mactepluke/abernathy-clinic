@@ -108,7 +108,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
         .subscribe({
         next: (patient) => {
           this.currentPatient = patient;
-          this.displayService.openSnackBar(`Patient\'${patient.family}\' has been updated!`);
+          this.displayService.openSnackBar(`Patient \'${patient.family}\' has been updated!`);
         },
         error: () => this.displayService.openSnackBar(`Could not update patient with family name: \'${this.currentPatient.family}\'`)
       });

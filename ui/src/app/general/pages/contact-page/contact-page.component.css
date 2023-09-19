@@ -1,0 +1,13 @@
+p {
+  font-size: medium;
+  margin-top: 1%;
+  margin-left: 1%;
+}
+
+#actions {
+  margin-top: 30px;
+}
+
+#send-email {
+  margin-left: 10px;
+}

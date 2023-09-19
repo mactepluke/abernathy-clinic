@@ -1,0 +1,123 @@
+version: '3.2'
+services:
+    
+    #Mysql
+    mysql:
+        container_name: msa-mysql
+        image: msa-mysql:latest
+        volumes:
+            - /volume1/database/msa_data:/var/lib/mysql:rw
+        restart: always
+        environment:
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: password
+            MYSQL_DATABASE: mediscreen_db
+            MYSQL_ROOT_PASSWORD: BHCNEDkB3
+        networks:
+            - msa-network
+
+    #MongoDB
+    mongo:
+        container_name: msa-mongo
+        image: msa-mongo:latest
+        volumes:
+            - /volume1/database/msa_mongo:/data/db:rw
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: password
+        networks:
+            - msa-network
+        ports:
+            - 27017:27017
+    
+    #Microservice Patients
+    mpatients:
+        container_name: msa-mpatients
+        image: msa-mpatients:latest
+        restart: always
+        depends_on:
+            - mysql
+        networks:
+            - msa-network
+        ports:
+            - "8081:8081"
+        environment:
+            DATASOURCE_URL: jdbc:mysql://mysql:3306/mediscreen_db?serverTimezone=UTC
+            DATASOURCE_USERNAME: admin
+            DATASOURCE_PASSWORD: password
+            LOG_LEVEL: info
+
+    #Microservice History
+    mhistory:
+        container_name: msa-mhistory
+        image: msa-mhistory:latest
+        depends_on:
+            - mongo
+        restart: always
+        environment:
+            MONGO_URI: mongodb://admin:password@mongo:27017/
+            MONGO_INITDB_DATABASE: mediscreen_nosql_db
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: password
+            MONGO_AUTO_INDEX_CREATION: true
+            LOG_LEVEL: info
+        networks:
+            - msa-network
+        ports:
+            - "8082:8082"
+
+    #Microservice Assessment
+    massessment:
+        container_name: msa-massessment
+        image: msa-massessment:latest
+        restart: always
+        depends_on:
+            - mhistory
+        networks:
+            - msa-network
+        ports:
+            - "8083:8083"
+        environment:
+            MHISTORY_URI: http://mhistory:8082
+            TRIGGERING_TERMS: hemoglobine A1C,microalbumine,taille,poids,fumeur,anormal,cholesterol,vertige,rechute,reaction,anticorps,hemoglobin A1C,microalbumin,weight,height,smoker,abnormal,vertigo,relapse,antibody
+            LOG_LEVEL: info
+            
+    #Gateway
+    gateway:
+        container_name: msa-gateway
+        image: msa-gateway:latest
+        restart: always
+        depends_on:
+            - mpatients
+            - mhistory
+            - massessment
+        networks:
+            - msa-network
+        ports:
+            - "9220:9220"
+        environment:
+            MPATIENTS_URI: http://mpatients:8081
+            MHISTORY_URI: http://mhistory:8082
+            MASSESSMENT_URI: http://massessment:8083
+            JJWT_SECRET: CaLkeqVTmwxgXkxuqnQmUsvkLVvdhgHVHifRwhJDxkPossNQdUjBFtnYPXGsYjhpA
+            JJWT_EXPIRATION: 172800
+            CORS_ALLOWED_ORIGINS: http://syngleton.co:9221
+            DATASOURCE_URL: jdbc:mysql://mysql:3306/mediscreen_db?serverTimezone=UTC
+            DATASOURCE_USERNAME: admin
+            DATASOURCE_PASSWORD: password
+            LOG_LEVEL: info
+    
+    #UI
+    ui:
+        container_name: msa-ui
+        image: msa-ui:latest
+        restart: always
+        networks:
+            - msa-network
+        ports:
+            - "9221:8080"
+
+networks:
+    msa-network:
+        driver: bridge

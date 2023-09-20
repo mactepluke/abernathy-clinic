@@ -1,7 +1,6 @@
 package com.mediscreen.gateway.configuration;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,12 +11,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-@AllArgsConstructor
 @Component
+@AllArgsConstructor
 public class SecurityContextRepository implements ServerSecurityContextRepository {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     @Override
     public Mono<Void> save(ServerWebExchange exchange, SecurityContext context) {

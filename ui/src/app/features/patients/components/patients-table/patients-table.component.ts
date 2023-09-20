@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTable, MatTableModule} from '@angular/material/table';
@@ -11,6 +11,7 @@ import {Patient} from "../../models/Patient";
 import {NullToDashPipe} from "../../../../shared/pipes/null-to-dash.pipe";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-patients-table',
@@ -27,22 +28,33 @@ import {MatIconModule} from "@angular/material/icon";
     MatIconModule
   ],
   providers: [
-    PatientService
+    PatientService,
+    DeviceDetectorService
   ],
   styleUrls: ['./patients-table.component.css']
 })
-export class PatientsTableComponent implements AfterViewInit {
+export class PatientsTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Patient>;
   dataSource: PatientsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['family', 'given', 'dob', 'sex', 'address', 'phone', 'action'];
+  displayedColumns = ['action', 'family', 'given', 'dob', 'sex', 'address', 'phone'];
 
-  constructor(private patientService: PatientService, private router: Router) {
+  constructor(
+    private patientService: PatientService,
+    private router: Router,
+    private deviceDetectorService: DeviceDetectorService
+  ) {
     this.dataSource = new PatientsTableDataSource();
   }
+
+  ngOnInit(): void {
+        if (this.deviceDetectorService.isMobile())  {
+          this.displayedColumns = ['action', 'family', 'given'];
+        }
+    }
 
   ngAfterViewInit(): void {
 

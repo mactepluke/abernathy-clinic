@@ -2,8 +2,8 @@ package com.mediscreen.gateway.service;
 
 import com.mediscreen.gateway.model.User;
 import com.mediscreen.gateway.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -12,12 +12,11 @@ import reactor.core.publisher.Mono;
 
 @Log4j2
 @Service
+@AllArgsConstructor
 public class DefaultUserService implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)

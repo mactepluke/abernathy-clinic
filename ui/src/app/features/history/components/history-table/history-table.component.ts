@@ -48,7 +48,7 @@ export class HistoryTableComponent implements AfterViewInit {
 
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['title', 'dateTime', 'action'];
+  displayedColumns = ['view', 'title', 'dateTime', 'action'];
 
   constructor(private historyService: HistoryService,
               private router: Router,

@@ -4,8 +4,8 @@ import com.mediscreen.massessment.model.DiabetesRiskLevel;
 import com.mediscreen.massessment.service.AssessmentService;
 import com.mediscreen.massessment.web.exceptions.CannotHandleAssessmentException;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -26,10 +26,10 @@ import java.time.LocalDate;
 @RequestMapping("/assessment")
 @Validated
 @Scope("request")
+@AllArgsConstructor
 public class AssessmentController {
 
-    @Autowired
-    AssessmentService assessmentService;
+    private final AssessmentService assessmentService;
 
     @GetMapping(value = "/assessDiabetesRisk")
     public ResponseEntity<DiabetesRiskLevel> assessDiabetesRisk(@Valid @RequestParam @NotBlank String patientId,

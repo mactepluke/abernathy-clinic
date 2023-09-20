@@ -6,7 +6,6 @@ import com.mediscreen.massessment.proxies.PatientHistoryApiProxy;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -40,11 +39,11 @@ public class DefaultAssessmentService implements AssessmentService {
     private int earlyOnsetOldTriggerThreshold;
 
 
-    public DefaultAssessmentService() {
-    }
+    private final PatientHistoryApiProxy patientHistoryApiProxy;
 
-    @Autowired
-    PatientHistoryApiProxy patientHistoryApiProxy;
+    public DefaultAssessmentService(PatientHistoryApiProxy patientHistoryApiProxy) {
+        this.patientHistoryApiProxy = patientHistoryApiProxy;
+    }
 
     @Override
     public DiabetesRiskLevel assessDiabetesRisk(String patientId, char sex, LocalDate dob)  {

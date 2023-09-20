@@ -107,8 +107,10 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient)
         .subscribe({
         next: (patient) => {
-          this.currentPatient = patient;
-          this.displayService.openSnackBar(`Patient \'${patient.family}\' has been updated!`);
+          this.router.navigate(['mediscreen-abernathy/patient-record', patient.family, patient.given])
+            .then(
+              () => this.displayService.openSnackBar(`Patient \'${patient.family}\' has been updated!`)
+            )
         },
         error: () => this.displayService.openSnackBar(`Could not update patient with family name: \'${this.currentPatient.family}\'`)
       });

@@ -2,7 +2,6 @@ package com.mediscreen.gateway.configuration;
 
 import io.jsonwebtoken.Claims;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,8 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AuthenticationManager implements ReactiveAuthenticationManager {
 
-    @Autowired
-    private JWTUtil jwtUtil;
+    private final JWTUtil jwtUtil;
 
     @Override
     public Mono<Authentication> authenticate(Authentication authentication) {

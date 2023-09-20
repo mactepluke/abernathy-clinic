@@ -1,21 +1,64 @@
-.dialogFieldRows {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+@media (hover: none) {
+
+  .dialogFieldRows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dialogContents {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .leftFormFields {
+    width: 100%;
+  }
+
+  .rightFormFields {
+    width: 100%;
+  }
+
 }
 
-.dialogContents {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+@media (hover: hover)  {
 
-.leftFormFields {
-  margin-right: 10px;
-}
+  .dialogFieldRows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.rightFormFields {
-  margin-left: 10px;
+  .dialogContents {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .leftFormFields {
+    margin-right: 10px;
+  }
+
+  .rightFormFields {
+    margin-left: 10px;
+  }
+
+  #sex {
+    width: 50%;
+  }
+
+  #dob {
+    width: 150%;
+  }
+
+  #address {
+    width: 140%;
+  }
+
+  #phone {
+    width: 60%;
+  }
+
 }
 
 .centered {
@@ -23,19 +66,5 @@
   justify-content: center;
 }
 
-#sex  {
-  width: 50%;
-}
 
-#dob  {
-  width: 150%;
-}
-
-#address  {
-  width: 140%;
-}
-
-#phone  {
-  width: 60%;
-}
 

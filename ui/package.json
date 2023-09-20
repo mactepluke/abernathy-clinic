@@ -25,6 +25,7 @@
     "lockdown": "^0.0.5",
     "minimatch": "^9.0.3",
     "moment": "^2.29.4",
+    "ngx-device-detector": "^6.0.2",
     "rxjs": "~7.8.0",
     "semver": "^7.5.4",
     "tslib": "^2.3.0",

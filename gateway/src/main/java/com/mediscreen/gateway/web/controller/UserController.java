@@ -7,8 +7,8 @@ import com.mediscreen.gateway.model.User;
 import com.mediscreen.gateway.service.UserService;
 import com.mediscreen.gateway.web.exceptions.CannotHandleUserException;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,14 +21,12 @@ import reactor.core.publisher.Mono;
 @Log4j2
 @RestController
 @RequestMapping("/user")
+@AllArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private JWTUtil jwtUtil;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final JWTUtil jwtUtil;
 
 
     @PostMapping(value = "/create")

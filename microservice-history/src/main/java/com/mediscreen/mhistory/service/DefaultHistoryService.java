@@ -3,8 +3,8 @@ package com.mediscreen.mhistory.service;
 import com.mediscreen.mhistory.model.LightNote;
 import com.mediscreen.mhistory.model.Note;
 import com.mediscreen.mhistory.repository.HistoryRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +14,10 @@ import java.util.List;
 
 @Log4j2
 @Service
+@AllArgsConstructor
 public class DefaultHistoryService implements HistoryService {
 
-    @Autowired
-    HistoryRepository historyRepository;
+    private final HistoryRepository historyRepository;
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)

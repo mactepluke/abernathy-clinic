@@ -1,16 +1,29 @@
-.cardFieldRows {
-  display: flex;
-  flex-direction: row;
+@media (hover: hover) {
+
+  .cardFieldRows {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .formFields {
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 20%;
+  }
 }
 
-.patientInfoContents {
-  display: flex;
-  flex-direction: column;
-}
+@media (hover: none) {
 
-.formFields {
-  margin-top: 10px;
-  margin-right: 10px;
+  .cardFieldRows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .formFields {
+    margin-top: 10px;
+    width: 100%;
+  }
+
 }
 
 .centered {
@@ -23,7 +36,7 @@
 }
 
 #address  {
-  width: 800px;
+  width: 100%;
 }
 
 .button-div {

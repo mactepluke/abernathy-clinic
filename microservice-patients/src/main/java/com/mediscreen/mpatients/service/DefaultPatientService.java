@@ -2,8 +2,8 @@ package com.mediscreen.mpatients.service;
 
 import com.mediscreen.mpatients.model.Patient;
 import com.mediscreen.mpatients.repository.PatientRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +13,10 @@ import java.util.List;
 
 @Log4j2
 @Service
+@AllArgsConstructor
 public class DefaultPatientService implements PatientService {
 
-    @Autowired
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
     @Override
     @Transactional(isolation = Isolation.SERIALIZABLE)

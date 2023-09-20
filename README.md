@@ -9,6 +9,8 @@ This corresponds to the _OpenClassroom_ Project entitle "Build a microservice ap
 
 It has been written by Jean-Luc METZ ([luc.metz@icloud.com]()) between July and September 2023 using Angular for the UI, and Spring Boot for the backend.
 
+This exact application is currently deployed and hosted here for you to test: http://syngleton.co/mediscreen
+
 ---
 Green Code
 ============

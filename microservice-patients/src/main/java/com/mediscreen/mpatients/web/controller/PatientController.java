@@ -4,12 +4,11 @@ import com.mediscreen.mpatients.model.Patient;
 import com.mediscreen.mpatients.service.PatientService;
 import com.mediscreen.mpatients.web.exceptions.CannotHandlePatientException;
 import com.mediscreen.mpatients.web.exceptions.PatientNotFoundException;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -31,10 +30,10 @@ import java.util.List;
 @RequestMapping("/patient")
 @Validated
 @Scope("request")
+@AllArgsConstructor
 public class PatientController {
 
-    @Autowired
-    PatientService patientService;
+    private final PatientService patientService;
 
     @PostMapping(value = "/add")
     public ResponseEntity<Patient>  add(

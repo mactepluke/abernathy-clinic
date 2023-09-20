@@ -4,7 +4,7 @@ echo Started building Mediscreen project –
 
 echo Building jar files...
 
-(cd ./ui || exit; ng build --aot --build-optimizer --optimization --output-hashing=all)
+(cd ./ui || exit; ng build --prod --aot --build-optimizer --optimization --output-hashing=all)
 (cd ./gateway || exit; mvn clean install -Dmaven.test.skip=true)
 (cd ./microservice-patients || exit; mvn clean install -Dmaven.test.skip=true)
 (cd ./microservice-history || exit; mvn clean install -Dmaven.test.skip=true)

@@ -11,24 +11,6 @@
   margin-top: 10px;
 }
 
-#trash  {
-  margin-left: 10px;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-start;
-}
-
-#trash  {
-  margin-left: 10px;
-}
-
-.actions {
-  display: flex;
-  justify-content: flex-start;
-}
-
 .mat-column-title {
   width: 50%;
 }

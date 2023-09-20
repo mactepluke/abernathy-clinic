@@ -1,6 +1,5 @@
 package com.mediscreen.gateway.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,10 +32,13 @@ public class WebSecurityConfig {
     @Value("${security.allowed-path.mhistory}")
     private String mhistoryPath;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private SecurityContextRepository securityContextRepository;
+    private final AuthenticationManager authenticationManager;
+    private final SecurityContextRepository securityContextRepository;
+
+    public WebSecurityConfig(AuthenticationManager authenticationManager, SecurityContextRepository securityContextRepository) {
+        this.authenticationManager = authenticationManager;
+        this.securityContextRepository = securityContextRepository;
+    }
 
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {

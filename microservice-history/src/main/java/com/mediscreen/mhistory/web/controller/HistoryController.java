@@ -9,8 +9,8 @@ import com.mediscreen.mhistory.web.exceptions.CannotHandleNoteException;
 import com.mediscreen.mhistory.web.exceptions.NoteNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +26,10 @@ import static java.lang.Math.min;
 @RequestMapping("/history")
 @Validated
 @Scope("request")
+@AllArgsConstructor
 public class HistoryController {
 
-    @Autowired
-    HistoryService historyService;
+    private final HistoryService historyService;
 
     @PostMapping(value = "/addNote")
     public ResponseEntity<Note> addNote(

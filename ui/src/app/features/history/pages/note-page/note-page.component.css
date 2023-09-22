@@ -17,11 +17,6 @@ button  {
   margin-right: 10px;
 }
 
-.centered {
-  display: flex;
-  justify-content: space-between;
-}
-
 .text-style {
   white-space: pre-wrap;
 }
@@ -34,8 +29,7 @@ button  {
   width: 800px;
 }
 
-.button-div {
-  margin-left: 10px;
+.buttons {
   margin-right: 10px;
 }
 

@@ -8,11 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "patient")
+@ToString
 public class Patient {
 
     @Id

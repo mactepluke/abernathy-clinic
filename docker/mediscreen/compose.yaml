@@ -28,8 +28,6 @@ services:
             MONGO_INITDB_ROOT_PASSWORD: password
         networks:
             - msa-network
-        ports:
-            - 27017:27017
     
     #Microservice Patients
     mpatients:
@@ -40,8 +38,6 @@ services:
             - mysql
         networks:
             - msa-network
-        ports:
-            - "8081:8081"
         environment:
             DATASOURCE_URL: jdbc:mysql://mysql:3306/mediscreen_db?serverTimezone=UTC
             DATASOURCE_USERNAME: admin
@@ -64,8 +60,6 @@ services:
             LOG_LEVEL: info
         networks:
             - msa-network
-        ports:
-            - "8082:8082"
 
     #Microservice Assessment
     massessment:
@@ -76,11 +70,9 @@ services:
             - mhistory
         networks:
             - msa-network
-        ports:
-            - "8083:8083"
         environment:
             MHISTORY_URI: http://mhistory:8082
-            TRIGGERING_TERMS: hemoglobine A1C,microalbumine,taille,poids,fumeur,anormal,cholesterol,vertige,rechute,reaction,anticorps,hemoglobin A1C,microalbumin,weight,height,smoker,abnormal,vertigo,relapse,antibody
+            TRIGGERING_TERMS: hemoglobine A1C,microalbumine,taille,poids,fumeur,anormal,cholesterol,vertige,rechute,reaction,anticorps
             LOG_LEVEL: info
             
     #Gateway

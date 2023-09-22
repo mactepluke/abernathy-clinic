@@ -100,6 +100,7 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     this.newPatient = this.form.value;
+
     if (this.patientRecordService.equals(this.newPatient, this.currentPatient)) {
       console.log('No fields changed')
       this.displayService.openSnackBar('No fields changed');
@@ -107,10 +108,12 @@ export class PatientInfoComponent implements OnInit, AfterViewInit {
       this.patientService.updatePatient(this.currentPatient.family, this.currentPatient.given, this.newPatient)
         .subscribe({
         next: (patient) => {
+          this.currentPatient = patient;
+          this.reset();
           this.router.navigate(['mediscreen-abernathy/patient-record', patient.family, patient.given])
             .then(
               () => this.displayService.openSnackBar(`Patient \'${patient.family}\' has been updated!`)
-            )
+            );
         },
         error: () => this.displayService.openSnackBar(`Could not update patient with family name: \'${this.currentPatient.family}\'`)
       });

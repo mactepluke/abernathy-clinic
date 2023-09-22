@@ -49,7 +49,6 @@ public class AssessmentController {
                 + assessment
                 + ")");
 
-        log.debug("ASSESSMENT RESULT={}", assessment);
         return new ResponseEntity<>(assessment, HttpStatus.OK);
     }
 

@@ -26,20 +26,15 @@
 
 }
 
-.centered {
-  display: flex;
-  justify-content: space-between;
+.buttons {
+  margin-right: 10px;
 }
 
-#reset {
-  margin-left: 10px;
+#delete {
+  margin-left: 50px;
 }
 
 #address  {
   width: 100%;
 }
 
-.button-div {
-  margin-left: 10px;
-  margin-right: 10px;
-}

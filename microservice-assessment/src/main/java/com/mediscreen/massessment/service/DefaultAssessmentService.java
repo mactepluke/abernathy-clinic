@@ -59,6 +59,8 @@ public class DefaultAssessmentService implements AssessmentService {
 
         triggers = countTriggersInNoteContentList(noteContentsDTO);
 
+        log.debug("Triggers= {}", triggers);
+
         diabetesRiskLevel = calculateRisk(triggers, sex, dob);
 
         return diabetesRiskLevel;
@@ -84,6 +86,7 @@ public class DefaultAssessmentService implements AssessmentService {
 
         triggeringTerms.forEach(triggeringTerm -> {
             if (containsIgnoreCase(content, triggeringTerm)) {
+                log.debug("Trigger={}", triggeringTerm);
                 triggers.getAndIncrement();
             }
         });

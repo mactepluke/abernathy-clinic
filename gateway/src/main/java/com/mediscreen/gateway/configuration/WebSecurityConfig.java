@@ -29,8 +29,6 @@ public class WebSecurityConfig {
     private List<String> allowedHeaders;
     @Value("#{'${web.cors.exposed-headers}'.split(',')}")
     private List<String> exposedHeaders;
-    @Value("${security.allowed-path.mhistory}")
-    private String mhistoryPath;
 
     private final AuthenticationManager authenticationManager;
     private final SecurityContextRepository securityContextRepository;
@@ -58,7 +56,7 @@ public class WebSecurityConfig {
                 .securityContextRepository(securityContextRepository)
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers(HttpMethod.OPTIONS).permitAll()
-                        .pathMatchers("/user/**", mhistoryPath + "/history/**").permitAll()
+                        .pathMatchers("/user/**").permitAll()
                         .anyExchange().authenticated()
                 );
         return http.build();

@@ -12,6 +12,7 @@ import {NullToDashPipe} from "../../../../shared/pipes/null-to-dash.pipe";
 import {Router} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {MatCardModule} from "@angular/material/card";
 
 @Component({
   selector: 'app-patients-table',
@@ -25,7 +26,8 @@ import {DeviceDetectorService} from 'ngx-device-detector';
     MatInputModule,
     MatButtonModule,
     NullToDashPipe,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     PatientService,

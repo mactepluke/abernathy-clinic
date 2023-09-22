@@ -22,7 +22,7 @@ public class DefaultUserService implements UserService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public User create(String username, String password) {
 
-        if (find(username) != null) {
+        if (userRepository.findByUsername(username) != null) {
             log.error("User already exists with username: {}", username);
             return null;
         }

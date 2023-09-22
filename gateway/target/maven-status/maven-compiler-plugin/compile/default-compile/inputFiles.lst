@@ -1,6 +1,5 @@
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/configuration/JWTUtil.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/configuration/WebSecurityConfig.java
-/Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/web/exceptions/InvalidCredentialsException.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/web/controller/UserController.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/configuration/AuthenticationManager.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/model/User.java
@@ -11,7 +10,6 @@
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/service/UserService.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/service/DefaultUserService.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/model/AuthResponse.java
-/Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/web/exceptions/UserNotFoundException.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/model/AuthRequest.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/model/Message.java
 /Users/lucmetz/Documents/IdeaProjects/OC/9_mediscreen/abernathy-clinic/gateway/src/main/java/com/mediscreen/gateway/repository/UserRepository.java

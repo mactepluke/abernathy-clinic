@@ -46,14 +46,10 @@
     </div>
 
   </mat-card-content>
-  <mat-card-actions class="centered">
-    <div class="button-div">
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onUpdate()">Update</button>
-      <button id="reset" mat-raised-button (click)="onReset()">Reset</button>
-    </div>
-    <div class="button-div">
-      <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
-    </div>
+  <mat-card-actions>
+      <button class="buttons" mat-raised-button color="primary" [disabled]="form.invalid" (click)="onUpdate()">Update</button>
+      <button class="buttons" mat-raised-button (click)="onReset()">Reset</button>
+      <button id="delete" mat-raised-button color="warn" (click)="onDelete()">Delete</button>
   </mat-card-actions>
 </mat-card>
 

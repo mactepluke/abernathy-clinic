@@ -22,7 +22,7 @@ public class DefaultPatientService implements PatientService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public Patient add(String family, String given, LocalDate dob, char sex, String address, String phone) {
 
-        if (find(family, given) != null)    {
+        if (patientRepository.findByFamilyAndGiven(family, given) != null)    {
             log.error("Patient already exists with family: '{}' and given: '{}'", family, given);
             return null;
         }

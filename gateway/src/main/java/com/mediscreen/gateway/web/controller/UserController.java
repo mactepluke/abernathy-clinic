@@ -50,4 +50,5 @@ public class UserController {
                 .map(user -> ResponseEntity.ok(new AuthResponse(jwtUtil.generateToken(user))))
                 .switchIfEmpty(Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()));
     }
+
 }

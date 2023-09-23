@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "history", url = "${MHISTORY_URI}")
+@FeignClient(name = "history", url = "${MHISTORY_URI:http://localhost:8082}")
 public interface PatientHistoryApiProxy {
 
     @GetMapping("/history/getFullHistory")

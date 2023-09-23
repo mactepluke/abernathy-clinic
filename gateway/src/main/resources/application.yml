@@ -23,15 +23,15 @@ spring:
               - Content-Type
       routes:
         - id: mpatients
-          uri: ${MPATIENTS_URI}
+          uri: ${MPATIENTS_URI:http://localhost:8081}
           predicates:
             - Path=/patient/*
         - id: mhistory
-          uri: ${MHISTORY_URI}
+          uri: ${MHISTORY_URI:http://localhost:8082}
           predicates:
             - Path=/history/*
         - id: massessment
-          uri: ${MASSESSMENT_URI}
+          uri: ${MASSESSMENT_URI:http://localhost:8083}
           predicates:
             - Path=/assessment/*
 
